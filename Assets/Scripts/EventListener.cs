@@ -6,13 +6,15 @@ using UnityEngine.Events;
 [System.Serializable]
 public class Event : UnityEvent<MissionObject.ObjectInfo>
 {
-
+    
 }
 
 public class EventListener : MonoBehaviour {
 
     public int[] missionProg;
     public Event m_event;
+    [Range(-3,3)]
+    public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +31,7 @@ public class EventListener : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E) && m_event != null)
         {
-        Physics.Raycast(ray, out hitInfo);
+            Physics.Raycast(ray, out hitInfo);
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
@@ -51,6 +53,15 @@ public class EventListener : MonoBehaviour {
     void objectListener(MissionObject.ObjectInfo objectInfo)
     {
         // Do stuff
+        if (objectInfo.interactType)
+        {
+            // Grab
+            objectInfo.obj.transform.parent = Camera.main.transform;
+            objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+            objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier, 
+                Camera.main.transform.eulerAngles.y + yRotationModifier, 
+                Camera.main.transform.eulerAngles.z + zRotationModifier);
+        }
         Debug.Log(objectInfo.name);
     }
 }
