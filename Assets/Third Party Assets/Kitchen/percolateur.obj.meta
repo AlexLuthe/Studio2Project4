@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: fa23b0ec9a2a1f34cb9f0d945c5fb24e
+timeCreated: 1491384131
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Boolean_1
+    100002: Boolean_1_1
+    100004: bouton_s_lection
+    100006: Cube_1
+    100008: Cylinder_1
+    100010: Cylinder_11
+    100012: d_but_pis
+    100014: grille
+    100016: manche
+    100018: on/off
+    100020: //RootNode
+    100022: pied_1
+    100024: pied_2
+    100026: pied_3
+    100028: pied_4
+    100030: pis_1
+    100032: pis_2
+    100034: plaque
+    100036: voyant_orange
+    100038: voyant_rouge
+    400000: Boolean_1
+    400002: Boolean_1_1
+    400004: bouton_s_lection
+    400006: Cube_1
+    400008: Cylinder_1
+    400010: Cylinder_11
+    400012: d_but_pis
+    400014: grille
+    400016: manche
+    400018: on/off
+    400020: //RootNode
+    400022: pied_1
+    400024: pied_2
+    400026: pied_3
+    400028: pied_4
+    400030: pis_1
+    400032: pis_2
+    400034: plaque
+    400036: voyant_orange
+    400038: voyant_rouge
+    2300000: Boolean_1
+    2300002: Boolean_1_1
+    2300004: bouton_s_lection
+    2300006: Cube_1
+    2300008: Cylinder_1
+    2300010: Cylinder_11
+    2300012: d_but_pis
+    2300014: grille
+    2300016: manche
+    2300018: on/off
+    2300020: pied_1
+    2300022: pied_2
+    2300024: pied_3
+    2300026: pied_4
+    2300028: pis_1
+    2300030: pis_2
+    2300032: plaque
+    2300034: voyant_orange
+    2300036: voyant_rouge
+    3300000: Boolean_1
+    3300002: Boolean_1_1
+    3300004: bouton_s_lection
+    3300006: Cube_1
+    3300008: Cylinder_1
+    3300010: Cylinder_11
+    3300012: d_but_pis
+    3300014: grille
+    3300016: manche
+    3300018: on/off
+    3300020: pied_1
+    3300022: pied_2
+    3300024: pied_3
+    3300026: pied_4
+    3300028: pis_1
+    3300030: pis_2
+    3300032: plaque
+    3300034: voyant_orange
+    3300036: voyant_rouge
+    4300000: Boolean_1
+    4300002: Boolean_1_1
+    4300004: bouton_s_lection
+    4300006: Cube_1
+    4300008: Cylinder_1
+    4300010: Cylinder_11
+    4300012: d_but_pis
+    4300014: grille
+    4300016: manche
+    4300018: on/off
+    4300020: pied_1
+    4300022: pied_2
+    4300024: pied_3
+    4300026: pied_4
+    4300028: pis_1
+    4300030: pis_2
+    4300032: plaque
+    4300034: voyant_orange
+    4300036: voyant_rouge
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
