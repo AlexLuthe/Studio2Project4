@@ -12,7 +12,7 @@ public class Event : UnityEvent<MissionObject.ObjectInfo>
 public class EventListener : MonoBehaviour {
 
     public int[] missionProg;
-    public float[] missionTimers;
+	public float[] missionTimers = {0,0,0,0,0};
     public Event m_event;
     [Range(-3,3)]
     public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
@@ -51,17 +51,17 @@ public class EventListener : MonoBehaviour {
 
                 for (int mIndex = 0; mIndex < missionProg.Length; ++mIndex)
                 {
-                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex] && missionTimers[missionIndex] <= 0)
+                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex])
                     {
-                        if (heldObject)
-                        {
-                            Destroy(heldObject);
-                            heldObject = null;
-                        }
-                        ++missionProg[missionIndex];
-                        missionTimers[missionIndex] = hitObject.objectInfo.timer;
-                        m_event.Invoke(hitObject.objectInfo);
-
+						if (missionTimers [missionIndex] <= 0) {
+							if (heldObject) {
+								Destroy (heldObject);
+								heldObject = null;
+							}
+							++missionProg [missionIndex];
+							missionTimers [missionIndex] = hitObject.objectInfo.timer;
+							m_event.Invoke (hitObject.objectInfo);
+						}
                     }
                 }
             }
