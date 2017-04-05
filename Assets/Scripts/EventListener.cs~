@@ -15,7 +15,6 @@ public class EventListener : MonoBehaviour {
     public Event m_event;
     [Range(-3,3)]
     public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
-    public GameObject heldObject;
 
 	// Use this for initialization
 	void Start () {
@@ -43,14 +42,8 @@ public class EventListener : MonoBehaviour {
                 {
                     if (missionIndex == mIndex && missionProgress == missionProg[missionIndex])
                     {
-                        if (heldObject)
-                        {
-                            Destroy(heldObject);
-                            heldObject = null;
-                        }
                         ++missionProg[missionIndex];
                         m_event.Invoke(hitObject.objectInfo);
-
                     }
                 }
             }
@@ -64,13 +57,10 @@ public class EventListener : MonoBehaviour {
         {
             // Grab
             objectInfo.obj.transform.parent = Camera.main.transform;
-            //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+            objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
             objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier, 
                 Camera.main.transform.eulerAngles.y + yRotationModifier, 
                 Camera.main.transform.eulerAngles.z + zRotationModifier);
-            objectInfo.heldPos = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-            objectInfo.held = true;
-            heldObject = objectInfo.obj;
         }
         Debug.Log(objectInfo.name);
     }
