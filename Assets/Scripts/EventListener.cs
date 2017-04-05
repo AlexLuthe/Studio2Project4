@@ -64,10 +64,12 @@ public class EventListener : MonoBehaviour {
         {
             // Grab
             objectInfo.obj.transform.parent = Camera.main.transform;
-            objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+            //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
             objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier, 
                 Camera.main.transform.eulerAngles.y + yRotationModifier, 
                 Camera.main.transform.eulerAngles.z + zRotationModifier);
+            objectInfo.heldPos = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+            objectInfo.held = true;
             heldObject = objectInfo.obj;
         }
         Debug.Log(objectInfo.name);
