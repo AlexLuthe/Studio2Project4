@@ -13,6 +13,7 @@ public class MissionObject : MonoBehaviour {
         public bool interactType; // True for pick up, false to interact 
         public bool held;
         public GameObject obj;
+        public float timer;
     }
 
     public ObjectInfo objectInfo;
