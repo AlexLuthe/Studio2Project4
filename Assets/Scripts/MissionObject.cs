@@ -9,6 +9,7 @@ public class MissionObject : MonoBehaviour {
     {
         public AnimationClip animClip;
         public AudioClip audioClip;
+        public string name;
     }
 
     public ObjectInfo objectInfo;

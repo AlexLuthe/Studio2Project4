@@ -19,7 +19,7 @@ public class EventListener : MonoBehaviour {
         if (m_event == null)
             m_event = new Event();
 
-        m_event.AddListener(Ping);
+        m_event.AddListener(objectListener);
 	}
 	
 	// Update is called once per frame
@@ -33,21 +33,24 @@ public class EventListener : MonoBehaviour {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
-                int xBanana = hitObject.missionProg[0];
-                int yBanana = hitObject.missionProg[1];
+                int missionIndex = hitObject.missionProg[0];
+                int missionProgress = hitObject.missionProg[1];
 
-                for (int missionIndex = 0; missionIndex < missionProg.Length; ++missionIndex)
+                for (int mIndex = 0; mIndex < missionProg.Length; ++mIndex)
                 {
-                    if (xBanana == missionIndex && yBanana == missionProg[missionIndex])
+                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex])
+                    {
+                        ++missionProg[missionIndex];
                         m_event.Invoke(hitObject.objectInfo);
+                    }
                 }
             }
         }
     }
 
-    void Ping(MissionObject.ObjectInfo objectInfo)
+    void objectListener(MissionObject.ObjectInfo objectInfo)
     {
         // Do stuff
-        Debug.Log("Doing Stuff");
+        Debug.Log(objectInfo.name);
     }
 }
