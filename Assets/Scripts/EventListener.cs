@@ -36,6 +36,8 @@ public class EventListener : MonoBehaviour {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
+                if (!hitObject.GetComponent<MeshRenderer>().enabled)
+                    hitObject.GetComponent<MeshRenderer>().enabled = true;
                 int missionIndex = hitObject.missionProg[0];
                 int missionProgress = hitObject.missionProg[1];
 
@@ -55,6 +57,10 @@ public class EventListener : MonoBehaviour {
                 }
             }
         }
+        if (heldObject)
+        {
+            heldObject.transform.localPosition = Vector3.Lerp(heldObject.transform.localPosition, new Vector3(xPickupModifier, yPickupModifier, zPickupModifier), Time.deltaTime * 4);
+        }
     }
 
     void objectListener(MissionObject.ObjectInfo objectInfo)
@@ -68,8 +74,6 @@ public class EventListener : MonoBehaviour {
             objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier, 
                 Camera.main.transform.eulerAngles.y + yRotationModifier, 
                 Camera.main.transform.eulerAngles.z + zRotationModifier);
-            objectInfo.heldPos = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-            objectInfo.held = true;
             heldObject = objectInfo.obj;
         }
         Debug.Log(objectInfo.name);

@@ -13,7 +13,6 @@ public class MissionObject : MonoBehaviour {
         public bool interactType; // True for pick up, false to interact 
         public bool held;
         public GameObject obj;
-        public Vector3 heldPos;
     }
 
     public ObjectInfo objectInfo;
@@ -23,13 +22,4 @@ public class MissionObject : MonoBehaviour {
     {
         objectInfo.obj = this.gameObject;
     }
-
-    private void Update()
-    {
-        if (objectInfo.held)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, objectInfo.heldPos, Time.deltaTime);
-        }
-    }
-
 }
