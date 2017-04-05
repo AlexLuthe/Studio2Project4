@@ -12,6 +12,7 @@ public class Event : UnityEvent<MissionObject.ObjectInfo>
 public class EventListener : MonoBehaviour {
 
     public int[] missionProg;
+    public float[] missionTimers;
     public Event m_event;
     [Range(-3,3)]
     public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
