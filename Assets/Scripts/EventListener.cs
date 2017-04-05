@@ -28,6 +28,13 @@ public class EventListener : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        for (int index = 0; index < missionTimers.Length; ++index)
+        {
+            if (missionTimers[index] > 0)
+                missionTimers[index] -= Time.deltaTime;
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
@@ -44,7 +51,7 @@ public class EventListener : MonoBehaviour {
 
                 for (int mIndex = 0; mIndex < missionProg.Length; ++mIndex)
                 {
-                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex])
+                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex] && missionTimers[missionIndex] <= 0)
                     {
                         if (heldObject)
                         {
@@ -52,6 +59,7 @@ public class EventListener : MonoBehaviour {
                             heldObject = null;
                         }
                         ++missionProg[missionIndex];
+                        missionTimers[missionIndex] = hitObject.objectInfo.timer;
                         m_event.Invoke(hitObject.objectInfo);
 
                     }
