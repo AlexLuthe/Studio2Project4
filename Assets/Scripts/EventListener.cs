@@ -44,8 +44,13 @@ public class EventListener : MonoBehaviour {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
-                if (!hitObject.GetComponent<MeshRenderer>().enabled)
-                    hitObject.GetComponent<MeshRenderer>().enabled = true;
+				if (hitObject.GetComponent<MeshRenderer> ()) 
+					hitObject.GetComponent<MeshRenderer> ().enabled = true;
+
+				if (hitObject.GetComponentInChildren<MeshRenderer> ())
+                    foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
+						rend.enabled = true;
+
                 int missionIndex = hitObject.missionProg[0];
                 int missionProgress = hitObject.missionProg[1];
 
