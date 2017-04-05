@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Analytics;
 
 [System.Serializable]
 public class Event : UnityEvent<MissionObject.ObjectInfo>
@@ -17,6 +18,8 @@ public class EventListener : MonoBehaviour {
     [Range(-3,3)]
     public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
     public GameObject heldObject;
+
+    bool startedGame = false;
 
 	// Use this for initialization
 	void Start () {
@@ -66,6 +69,19 @@ public class EventListener : MonoBehaviour {
 							++missionProg [missionIndex];
 							missionTimers [missionIndex] = hitObject.objectInfo.timer;
 							m_event.Invoke (hitObject.objectInfo);
+
+                            if (!startedGame)
+                            {
+                                startedGame = true;
+                                Analytics.CustomEvent("First Object", new Dictionary<string, object>
+                                {
+                                    {"Cereal", missionProg[0]},
+                                    {"Coffee", missionProg[1]},
+                                    {"Shower", missionProg[2]},
+                                    {"Toilet", missionProg[3]},
+                                    {"Music", missionProg[4]}
+                                });
+                            }
 						}
                     }
                 }
