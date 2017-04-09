@@ -7,6 +7,7 @@ public class MissionObject : MonoBehaviour {
     [System.Serializable]
     public struct ObjectInfo
     {
+        public Animator anim;
         public AnimationClip animClip;
         public AudioClip audioClip;
         public string name;
@@ -22,5 +23,6 @@ public class MissionObject : MonoBehaviour {
     private void Start()
     {
         objectInfo.obj = this.gameObject;
+        objectInfo.anim = this.GetComponent<Animator>();
     }
 }

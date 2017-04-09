@@ -47,12 +47,6 @@ public class EventListener : MonoBehaviour {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
-				if (hitObject.GetComponent<MeshRenderer> ()) 
-					hitObject.GetComponent<MeshRenderer> ().enabled = true;
-
-				if (hitObject.GetComponentInChildren<MeshRenderer> ())
-                    foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
-						rend.enabled = true;
 
                 int missionIndex = hitObject.missionProg[0];
                 int missionProgress = hitObject.missionProg[1];
@@ -65,7 +59,13 @@ public class EventListener : MonoBehaviour {
 							if (heldObject) {
 								Destroy (heldObject);
 								heldObject = null;
-							}
+                                if (hitObject.GetComponent<MeshRenderer>())
+                                    hitObject.GetComponent<MeshRenderer>().enabled = true;
+
+                                if (hitObject.GetComponentInChildren<MeshRenderer>())
+                                    foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
+                                        rend.enabled = true;
+                            }
 							++missionProg [missionIndex];
 							missionTimers [missionIndex] = hitObject.objectInfo.timer;
 							m_event.Invoke (hitObject.objectInfo);
@@ -105,6 +105,10 @@ public class EventListener : MonoBehaviour {
                 Camera.main.transform.eulerAngles.y + yRotationModifier, 
                 Camera.main.transform.eulerAngles.z + zRotationModifier);
             heldObject = objectInfo.obj;
+        }
+        else
+        {
+            objectInfo.anim.enabled = true;
         }
         Debug.Log(objectInfo.name);
     }
