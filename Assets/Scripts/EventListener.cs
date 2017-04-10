@@ -99,22 +99,8 @@ public class EventListener : MonoBehaviour {
         // Do stuff
         if (objectInfo.interactType)
         {
-            // Grab
-            objectInfo.obj.transform.parent = Camera.main.transform;
-            //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-            objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier, 
-                Camera.main.transform.eulerAngles.y + yRotationModifier, 
-                Camera.main.transform.eulerAngles.z + zRotationModifier);
-            heldObject = objectInfo.obj;
-            if (heldObject.GetComponent<MeshRenderer>())
-                heldObject.GetComponent<MeshRenderer>().enabled = true;
 
-            if (heldObject.GetComponentInChildren<MeshRenderer>())
-                foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
-                    rend.enabled = true;
-
-            if (objectInfo.objToHide)
-                objectInfo.objToHide.SetActive(false);
+            StartCoroutine(GrabObject(objectInfo));
         }
         else
         {
@@ -122,5 +108,33 @@ public class EventListener : MonoBehaviour {
             objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
         Debug.Log(objectInfo.name);
+    }
+
+    IEnumerator GrabObject(MissionObject.ObjectInfo objectInfo)
+    {
+        if (objectInfo.anim && objectInfo.animClip)
+        {
+            objectInfo.anim.enabled = true;
+            yield return new WaitForSeconds(objectInfo.animClip.length);
+        }
+        else
+            yield return null;
+
+        // Grab
+        objectInfo.obj.transform.parent = Camera.main.transform;
+        //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+        objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier,
+            Camera.main.transform.eulerAngles.y + yRotationModifier,
+            Camera.main.transform.eulerAngles.z + zRotationModifier);
+        heldObject = objectInfo.obj;
+        if (heldObject.GetComponent<MeshRenderer>())
+            heldObject.GetComponent<MeshRenderer>().enabled = true;
+
+        if (heldObject.GetComponentInChildren<MeshRenderer>())
+            foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
+                rend.enabled = true;
+
+        if (objectInfo.objToHide)
+            objectInfo.objToHide.SetActive(false);
     }
 }
