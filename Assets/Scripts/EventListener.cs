@@ -42,7 +42,7 @@ public class EventListener : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetKeyDown(KeyCode.E) && m_event != null)
+        if (Input.GetAxis("Interact") > 0 && m_event != null)
         {
             Physics.Raycast(ray, out hitInfo, maxReach);
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
@@ -106,10 +106,20 @@ public class EventListener : MonoBehaviour {
                 Camera.main.transform.eulerAngles.y + yRotationModifier, 
                 Camera.main.transform.eulerAngles.z + zRotationModifier);
             heldObject = objectInfo.obj;
+            if (heldObject.GetComponent<MeshRenderer>())
+                heldObject.GetComponent<MeshRenderer>().enabled = true;
+
+            if (heldObject.GetComponentInChildren<MeshRenderer>())
+                foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
+                    rend.enabled = true;
+
+            if (objectInfo.objToHide)
+                objectInfo.objToHide.SetActive(false);
         }
         else
         {
             objectInfo.anim.enabled = true;
+            objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
         Debug.Log(objectInfo.name);
     }
