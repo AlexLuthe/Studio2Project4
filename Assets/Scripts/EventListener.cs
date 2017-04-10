@@ -18,6 +18,7 @@ public class EventListener : MonoBehaviour {
     [Range(-3,3)]
     public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
     public GameObject heldObject;
+    public float maxReach = 1.0f;
 
     bool startedGame = false;
 
@@ -43,7 +44,7 @@ public class EventListener : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.E) && m_event != null)
         {
-            Physics.Raycast(ray, out hitInfo);
+            Physics.Raycast(ray, out hitInfo, maxReach);
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
