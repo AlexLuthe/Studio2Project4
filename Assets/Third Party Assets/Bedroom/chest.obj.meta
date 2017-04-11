@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: aafc492661b1f5c4f8cb2069b57c0d57
+timeCreated: 1491921802
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Circle
+    100004: Circle.001_Circle
+    100006: Circle.002_Circle
+    100008: Circle.003_Circle
+    100010: Circle.004_Circle
+    100012: Circle.005_Circle
+    100014: Circle.006_Circle
+    100016: Circle.007_Circle
+    100018: Circle.008_Circle
+    100020: Circle.009_Circle
+    100022: Circle.010_Circle
+    100024: Cube
+    400000: //RootNode
+    400002: Circle
+    400004: Circle.001_Circle
+    400006: Circle.002_Circle
+    400008: Circle.003_Circle
+    400010: Circle.004_Circle
+    400012: Circle.005_Circle
+    400014: Circle.006_Circle
+    400016: Circle.007_Circle
+    400018: Circle.008_Circle
+    400020: Circle.009_Circle
+    400022: Circle.010_Circle
+    400024: Cube
+    2300000: Circle
+    2300002: Circle.001_Circle
+    2300004: Circle.002_Circle
+    2300006: Circle.003_Circle
+    2300008: Circle.004_Circle
+    2300010: Circle.005_Circle
+    2300012: Circle.006_Circle
+    2300014: Circle.007_Circle
+    2300016: Circle.008_Circle
+    2300018: Circle.009_Circle
+    2300020: Circle.010_Circle
+    2300022: Cube
+    3300000: Circle
+    3300002: Circle.001_Circle
+    3300004: Circle.002_Circle
+    3300006: Circle.003_Circle
+    3300008: Circle.004_Circle
+    3300010: Circle.005_Circle
+    3300012: Circle.006_Circle
+    3300014: Circle.007_Circle
+    3300016: Circle.008_Circle
+    3300018: Circle.009_Circle
+    3300020: Circle.010_Circle
+    3300022: Cube
+    4300000: Circle
+    4300002: Circle.001_Circle
+    4300004: Circle.002_Circle
+    4300006: Circle.003_Circle
+    4300008: Circle.004_Circle
+    4300010: Circle.005_Circle
+    4300012: Circle.006_Circle
+    4300014: Circle.007_Circle
+    4300016: Circle.008_Circle
+    4300018: Circle.009_Circle
+    4300020: Circle.010_Circle
+    4300022: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

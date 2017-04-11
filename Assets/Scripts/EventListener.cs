@@ -104,7 +104,8 @@ public class EventListener : MonoBehaviour {
         }
         else
         {
-            objectInfo.anim.enabled = true;
+            if (objectInfo.anim && objectInfo.animClip)
+                objectInfo.anim.enabled = true;
             objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
         Debug.Log(objectInfo.name);

@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 232239931441b634e83bf9edfe6da591
+timeCreated: 1491922991
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: aspirateur_bas
+    100004: aspirateur_haut
+    100006: balai
+    100008: Boolean_18
+    100010: bouton_power
+    100012: brosse
+    100014: Cylinder_6
+    100016: debut_tube
+    100018: roue_1
+    100020: roue_2
+    100022: Tube
+    400000: //RootNode
+    400002: aspirateur_bas
+    400004: aspirateur_haut
+    400006: balai
+    400008: Boolean_18
+    400010: bouton_power
+    400012: brosse
+    400014: Cylinder_6
+    400016: debut_tube
+    400018: roue_1
+    400020: roue_2
+    400022: Tube
+    2300000: aspirateur_bas
+    2300002: aspirateur_haut
+    2300004: balai
+    2300006: Boolean_18
+    2300008: bouton_power
+    2300010: brosse
+    2300012: Cylinder_6
+    2300014: debut_tube
+    2300016: roue_1
+    2300018: roue_2
+    2300020: Tube
+    3300000: aspirateur_bas
+    3300002: aspirateur_haut
+    3300004: balai
+    3300006: Boolean_18
+    3300008: bouton_power
+    3300010: brosse
+    3300012: Cylinder_6
+    3300014: debut_tube
+    3300016: roue_1
+    3300018: roue_2
+    3300020: Tube
+    4300000: aspirateur_bas
+    4300002: aspirateur_haut
+    4300004: balai
+    4300006: Boolean_18
+    4300008: bouton_power
+    4300010: brosse
+    4300012: Cylinder_6
+    4300014: debut_tube
+    4300016: roue_1
+    4300018: roue_2
+    4300020: Tube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

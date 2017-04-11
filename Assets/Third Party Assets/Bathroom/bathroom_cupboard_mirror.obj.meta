@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 0a2f7d46435bf48469735d3ff58fa3c0
+timeCreated: 1491899291
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 11_11
+    100002: 1_1
+    100004: 2_2
+    100006: 3_3
+    100008: 4_4
+    100010: 5_5
+    100012: 6_6
+    100014: //RootNode
+    100016: sweethome3d_window_mirror_10
+    100018: sweethome3d_window_mirror_12
+    100020: sweethome3d_window_mirror_14
+    100022: sweethome3d_window_mirror_15
+    100024: sweethome3d_window_mirror_7
+    100026: sweethome3d_window_mirror_9
+    400000: 11_11
+    400002: 1_1
+    400004: 2_2
+    400006: 3_3
+    400008: 4_4
+    400010: 5_5
+    400012: 6_6
+    400014: //RootNode
+    400016: sweethome3d_window_mirror_10
+    400018: sweethome3d_window_mirror_12
+    400020: sweethome3d_window_mirror_14
+    400022: sweethome3d_window_mirror_15
+    400024: sweethome3d_window_mirror_7
+    400026: sweethome3d_window_mirror_9
+    2300000: 11_11
+    2300002: 1_1
+    2300004: 2_2
+    2300006: 3_3
+    2300008: 4_4
+    2300010: 5_5
+    2300012: 6_6
+    2300014: sweethome3d_window_mirror_10
+    2300016: sweethome3d_window_mirror_12
+    2300018: sweethome3d_window_mirror_14
+    2300020: sweethome3d_window_mirror_15
+    2300022: sweethome3d_window_mirror_7
+    2300024: sweethome3d_window_mirror_9
+    3300000: 11_11
+    3300002: 1_1
+    3300004: 2_2
+    3300006: 3_3
+    3300008: 4_4
+    3300010: 5_5
+    3300012: 6_6
+    3300014: sweethome3d_window_mirror_10
+    3300016: sweethome3d_window_mirror_12
+    3300018: sweethome3d_window_mirror_14
+    3300020: sweethome3d_window_mirror_15
+    3300022: sweethome3d_window_mirror_7
+    3300024: sweethome3d_window_mirror_9
+    4300000: 11_11
+    4300002: 1_1
+    4300004: 2_2
+    4300006: 3_3
+    4300008: 4_4
+    4300010: 5_5
+    4300012: 6_6
+    4300014: sweethome3d_window_mirror_10
+    4300016: sweethome3d_window_mirror_12
+    4300018: sweethome3d_window_mirror_14
+    4300020: sweethome3d_window_mirror_15
+    4300022: sweethome3d_window_mirror_7
+    4300024: sweethome3d_window_mirror_9
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
