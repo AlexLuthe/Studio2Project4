@@ -13,6 +13,7 @@ public class Event : UnityEvent<MissionObject.ObjectInfo>
 public class EventListener : MonoBehaviour {
 
     public int[] missionProg;
+    public int[] needsMilk = { 50, 50, 50, 50, 50 };
 	public float[] missionTimers = {0,0,0,0,0};
     public Event m_event;
     [Range(-3, 3)]
@@ -22,6 +23,8 @@ public class EventListener : MonoBehaviour {
     public GameObject heldObject;
     public float maxReach = 1.0f;
     public AudioSource _audioSource;
+    bool holdingMilk = false;
+    float milkTimer = 0;
 
     bool startedGame = false;
 
@@ -42,12 +45,14 @@ public class EventListener : MonoBehaviour {
                 missionTimers[index] -= Time.deltaTime;
         }
 
+        if (milkTimer > 0)
+            milkTimer -= Time.deltaTime;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetAxis("Interact") > 0 && m_event != null)
+        if (Input.GetAxis("Interact") > 0 && m_event != null && Physics.Raycast(ray, out hitInfo, maxReach))
         {
-            Physics.Raycast(ray, out hitInfo, maxReach);
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
@@ -57,27 +62,31 @@ public class EventListener : MonoBehaviour {
 
                 for (int mIndex = 0; mIndex < missionProg.Length; ++mIndex)
                 {
-                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex])
+                    if (missionIndex == mIndex && missionProgress == missionProg[missionIndex] && ((holdingMilk && missionProgress == needsMilk[missionIndex]) || (!holdingMilk && missionProgress != needsMilk[missionIndex])))
                     {
-						if (missionTimers [missionIndex] <= 0) {
-							if (heldObject) {
-								Destroy (heldObject);
-								heldObject = null;
-                                if (hitObject.GetComponent<MeshRenderer>())
-                                    hitObject.GetComponent<MeshRenderer>().enabled = true;
-
-                                if (hitObject.GetComponentInChildren<MeshRenderer>())
-                                    foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
-                                        rend.enabled = true;
-                            }
-							++missionProg [missionIndex];
-							missionTimers [missionIndex] = hitObject.objectInfo.timer;
-							m_event.Invoke (hitObject.objectInfo);
-
-                            if (!startedGame)
+                        if (!(heldObject && hitObject.objectInfo.interactType))
+                        {
+                            if (missionTimers[missionIndex] <= 0)
                             {
-                                startedGame = true;
-                                Analytics.CustomEvent("First Object", new Dictionary<string, object>
+                                if (heldObject)
+                                {
+                                    Destroy(heldObject);
+                                    heldObject = null;
+                                    if (hitObject.GetComponent<MeshRenderer>())
+                                        hitObject.GetComponent<MeshRenderer>().enabled = true;
+
+                                    if (hitObject.GetComponentInChildren<MeshRenderer>())
+                                        foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
+                                            rend.enabled = true;
+                                }
+                                ++missionProg[missionIndex];
+                                missionTimers[missionIndex] = hitObject.objectInfo.timer;
+                                m_event.Invoke(hitObject.objectInfo);
+
+                                if (!startedGame)
+                                {
+                                    startedGame = true;
+                                    Analytics.CustomEvent("First Object", new Dictionary<string, object>
                                 {
                                     {"Cereal", missionProg[0]},
                                     {"Coffee", missionProg[1]},
@@ -85,10 +94,28 @@ public class EventListener : MonoBehaviour {
                                     {"Toilet", missionProg[3]},
                                     {"Music", missionProg[4]}
                                 });
+                                }
                             }
-						}
+                        }
                     }
                 }
+            }
+            else if (hitInfo.collider.gameObject.GetComponent<Milk>())
+            {
+                if (!holdingMilk && milkTimer <= 0 && !heldObject)
+                {
+                    hitInfo.collider.gameObject.GetComponent<Milk>().grabbingMilk = true;
+                    milkTimer = 0.5f;
+                }
+            }
+            else if (hitInfo.collider && heldObject.GetComponent<Milk>() && milkTimer <= 0)
+            {
+                holdingMilk = false;
+                heldObject.transform.rotation = Quaternion.identity;
+                heldObject.transform.position = new Vector3(hitInfo.point.x, hitInfo.point.y + heldObject.GetComponent<BoxCollider>().bounds.size.y / 2, hitInfo.point.z);
+                heldObject.transform.parent = null;
+                heldObject = null;
+                milkTimer = 0.5f;
             }
         }
         if (heldObject)
@@ -100,9 +127,8 @@ public class EventListener : MonoBehaviour {
     void objectListener(MissionObject.ObjectInfo objectInfo)
     {
         // Do stuff
-        if (objectInfo.interactType)
+        if (objectInfo.interactType && heldObject == null)
         {
-
             StartCoroutine(GrabObject(objectInfo));
         }
         else
@@ -124,29 +150,32 @@ public class EventListener : MonoBehaviour {
 
     IEnumerator GrabObject(MissionObject.ObjectInfo objectInfo)
     {
-        if (objectInfo.anim && objectInfo.animClip)
+        if (heldObject == null)
         {
-            objectInfo.anim.enabled = true;
-            yield return new WaitForSeconds(objectInfo.animClip.length);
+            if (objectInfo.anim && objectInfo.animClip)
+            {
+                objectInfo.anim.enabled = true;
+                yield return new WaitForSeconds(objectInfo.animClip.length);
+            }
+            else
+                yield return null;
+
+            // Grab
+            objectInfo.obj.transform.parent = Camera.main.transform;
+            //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
+            objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier,
+                Camera.main.transform.eulerAngles.y + yRotationModifier,
+                Camera.main.transform.eulerAngles.z + zRotationModifier);
+            heldObject = objectInfo.obj;
+            if (heldObject.GetComponent<MeshRenderer>())
+                heldObject.GetComponent<MeshRenderer>().enabled = true;
+
+            if (heldObject.GetComponentInChildren<MeshRenderer>())
+                foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
+                    rend.enabled = true;
+
+            if (objectInfo.objToHide)
+                objectInfo.objToHide.SetActive(false);
         }
-        else
-            yield return null;
-
-        // Grab
-        objectInfo.obj.transform.parent = Camera.main.transform;
-        //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-        objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier,
-            Camera.main.transform.eulerAngles.y + yRotationModifier,
-            Camera.main.transform.eulerAngles.z + zRotationModifier);
-        heldObject = objectInfo.obj;
-        if (heldObject.GetComponent<MeshRenderer>())
-            heldObject.GetComponent<MeshRenderer>().enabled = true;
-
-        if (heldObject.GetComponentInChildren<MeshRenderer>())
-            foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
-                rend.enabled = true;
-
-        if (objectInfo.objToHide)
-            objectInfo.objToHide.SetActive(false);
     }
 }
