@@ -9,7 +9,8 @@ public class MissionObject : MonoBehaviour {
     {
         public Animator anim;
         public AnimationClip animClip;
-        public AudioClip audioClip;
+        public AudioSource[] audioSource;
+        public float[] delay;
         public string name;
         public bool interactType; // True for pick up, false to interact 
         public bool held;
