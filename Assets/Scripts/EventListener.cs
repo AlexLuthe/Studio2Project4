@@ -15,10 +15,13 @@ public class EventListener : MonoBehaviour {
     public int[] missionProg;
 	public float[] missionTimers = {0,0,0,0,0};
     public Event m_event;
-    [Range(-3,3)]
-    public float xPickupModifier, yPickupModifier, zPickupModifier, xRotationModifier, yRotationModifier, zRotationModifier;
+    [Range(-3, 3)]
+    public float xPickupModifier, yPickupModifier, zPickupModifier;
+    [Range(-180, 180)]
+    public float xRotationModifier, yRotationModifier, zRotationModifier;
     public GameObject heldObject;
     public float maxReach = 1.0f;
+    public AudioSource _audioSource;
 
     bool startedGame = false;
 
@@ -106,6 +109,14 @@ public class EventListener : MonoBehaviour {
         {
             if (objectInfo.anim && objectInfo.animClip)
                 objectInfo.anim.enabled = true;
+
+            if (objectInfo.audioSource.Length > 0)
+            {
+                for (int index = 0; index < objectInfo.audioSource.Length; ++index)
+                {
+                    objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
+                }
+            }
             objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
         Debug.Log(objectInfo.name);
