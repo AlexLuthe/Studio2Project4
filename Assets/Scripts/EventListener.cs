@@ -94,7 +94,7 @@ public class EventListener : MonoBehaviour {
                                     {"Toilet", missionProg[3]},
                                     {"Music", missionProg[4]}
                                 });
-                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission.txt", true)) {
+                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/first_mission.txt", true)) {
                                         string mission = "";
                                         if (missionProg[0] > 0)
                                             mission = "Cereal";
@@ -108,6 +108,13 @@ public class EventListener : MonoBehaviour {
                                             mission = "Music";
                                         file.WriteLine(mission);
                                     }
+                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
+                                        file.WriteLine("_________________________");
+                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Music");
+                                    }
+                                }
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
+                                    file.WriteLine(missionProg[0] + "         " + missionProg[1] + "         " + missionProg[2] + "         " + missionProg[3] + "         " + missionProg[4]);
                                 }
                             }
                         }
