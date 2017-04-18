@@ -94,6 +94,27 @@ public class EventListener : MonoBehaviour {
                                     {"Toilet", missionProg[3]},
                                     {"Music", missionProg[4]}
                                 });
+                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/first_mission.txt", true)) {
+                                        string mission = "";
+                                        if (missionProg[0] > 0)
+                                            mission = "Cereal";
+                                        else if (missionProg[1] > 0)
+                                            mission = "Coffee";
+                                        else if (missionProg[2] > 0)
+                                            mission = "Shower";
+                                        else if (missionProg[3] > 0)
+                                            mission = "Toilet";
+                                        else
+                                            mission = "Music";
+                                        file.WriteLine(mission);
+                                    }
+                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
+                                        file.WriteLine("_________________________");
+                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Music");
+                                    }
+                                }
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
+                                    file.WriteLine(missionProg[0] + "         " + missionProg[1] + "         " + missionProg[2] + "         " + missionProg[3] + "         " + missionProg[4]);
                                 }
                             }
                         }
@@ -108,7 +129,7 @@ public class EventListener : MonoBehaviour {
                     milkTimer = 0.5f;
                 }
             }
-            else if (hitInfo.collider && heldObject.GetComponent<Milk>() && milkTimer <= 0)
+            else if (hitInfo.collider && heldObject && heldObject.GetComponent<Milk>() && milkTimer <= 0)
             {
                 holdingMilk = false;
                 heldObject.transform.rotation = Quaternion.identity;
@@ -116,6 +137,14 @@ public class EventListener : MonoBehaviour {
                 heldObject.transform.parent = null;
                 heldObject = null;
                 milkTimer = 0.5f;
+            }
+            else if (hitInfo.collider.GetComponent<Door>())
+            {
+                if (hitInfo.collider.GetComponent<Door>().anim && hitInfo.collider.GetComponent<Door>().animClip) {
+                    hitInfo.collider.GetComponent<Door>().anim.enabled = true;
+                }
+                if (hitInfo.collider.GetComponent<Door>().anima)
+                    hitInfo.collider.GetComponent<Door>().anima.Play();
             }
         }
         if (heldObject)
