@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Analytics;
 
 [System.Serializable]
-public class Event : UnityEvent<MissionObject.ObjectInfo>
+public class Event : UnityEvent<MissionObject.ObjectInfo, GameObject, Vector3>
 {
     
 }
@@ -32,8 +32,6 @@ public class EventListener : MonoBehaviour {
 	void Start () {
         if (m_event == null)
             m_event = new Event();
-
-        m_event.AddListener(objectListener);
 	}
 	
 	// Update is called once per frame
@@ -56,6 +54,8 @@ public class EventListener : MonoBehaviour {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
                 MissionObject hitObject = hitInfo.collider.gameObject.GetComponent<MissionObject>();
+
+                m_event.AddListener(hitObject.objectListener);
 
                 int missionIndex = hitObject.missionProg[0];
                 int missionProgress = hitObject.missionProg[1];
@@ -81,7 +81,7 @@ public class EventListener : MonoBehaviour {
                                 }
                                 ++missionProg[missionIndex];
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;
-                                m_event.Invoke(hitObject.objectInfo);
+                                m_event.Invoke(hitObject.objectInfo, heldObject, new Vector3(xRotationModifier, yRotationModifier, zRotationModifier));
 
                                 if (!startedGame)
                                 {
@@ -152,61 +152,6 @@ public class EventListener : MonoBehaviour {
         if (heldObject)
         {
             heldObject.transform.localPosition = Vector3.Lerp(heldObject.transform.localPosition, new Vector3(xPickupModifier, yPickupModifier, zPickupModifier), Time.deltaTime * 4);
-        }
-    }
-
-    void objectListener(MissionObject.ObjectInfo objectInfo)
-    {
-        // Do stuff
-        if (objectInfo.interactType && heldObject == null)
-        {
-            StartCoroutine(GrabObject(objectInfo));
-        }
-        else
-        {
-            if (objectInfo.anim && objectInfo.animClip)
-                objectInfo.anim.enabled = true;
-
-            if (objectInfo.audioSource.Length > 0)
-            {
-                for (int index = 0; index < objectInfo.audioSource.Length; ++index)
-                {
-                    objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
-                }
-            }
-            objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
-        }
-        Debug.Log(objectInfo.name);
-    }
-
-    IEnumerator GrabObject(MissionObject.ObjectInfo objectInfo)
-    {
-        if (heldObject == null)
-        {
-            if (objectInfo.anim && objectInfo.animClip)
-            {
-                objectInfo.anim.enabled = true;
-                yield return new WaitForSeconds(objectInfo.animClip.length);
-            }
-            else
-                yield return null;
-
-            // Grab
-            objectInfo.obj.transform.parent = Camera.main.transform;
-            //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-            objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + xRotationModifier,
-                Camera.main.transform.eulerAngles.y + yRotationModifier,
-                Camera.main.transform.eulerAngles.z + zRotationModifier);
-            heldObject = objectInfo.obj;
-            if (heldObject.GetComponent<MeshRenderer>())
-                heldObject.GetComponent<MeshRenderer>().enabled = true;
-
-            if (heldObject.GetComponentInChildren<MeshRenderer>())
-                foreach (MeshRenderer rend in heldObject.GetComponentsInChildren<MeshRenderer>())
-                    rend.enabled = true;
-
-            if (objectInfo.objToHide)
-                objectInfo.objToHide.SetActive(false);
         }
     }
 }
