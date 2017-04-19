@@ -8,11 +8,16 @@ public class Door : MonoBehaviour {
     public Animation anima;
     public AnimationClip animClip;
     public AudioSource audSource;
-    bool animPlayed = false;
+    public bool animPlayed = false;
     public float maxReach = 1.0f;
 
+    void Start()
+    {
+
+    }
+
 	//Update is called once per frame
-	void Update () {
+	/*void Update () {
 		if (Input.GetAxis("Interact") > 0 && !animPlayed)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -31,5 +36,5 @@ public class Door : MonoBehaviour {
                 Debug.Log("Door Open");
             }
         }
-	}
+	}*/
 }

@@ -138,13 +138,15 @@ public class EventListener : MonoBehaviour {
                 heldObject = null;
                 milkTimer = 0.5f;
             }
-            else if (hitInfo.collider.GetComponent<Door>())
+            else if (hitInfo.collider.GetComponent<Door>() && !hitInfo.collider.GetComponent<Door>().animPlayed)
             {
-                if (hitInfo.collider.GetComponent<Door>().anim && hitInfo.collider.GetComponent<Door>().animClip) {
+                if (hitInfo.collider.GetComponent<Door>().anim && hitInfo.collider.GetComponent<Door>().animClip)
+                {
                     hitInfo.collider.GetComponent<Door>().anim.enabled = true;
                 }
                 if (hitInfo.collider.GetComponent<Door>().anima)
                     hitInfo.collider.GetComponent<Door>().anima.Play();
+                hitInfo.collider.GetComponent<Door>().animPlayed = true;
             }
         }
         if (heldObject)
