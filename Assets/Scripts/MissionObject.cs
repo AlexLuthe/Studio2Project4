@@ -52,6 +52,22 @@ public class MissionObject : MonoBehaviour {
                 }
             }
             objInfo.obj.GetComponent<BoxCollider>().enabled = false;
+            if (GetComponent<MeshRenderer>())
+            {
+                GetComponent<MeshRenderer>().enabled = true;
+                Color colour = GetComponent<MeshRenderer>().material.color;
+                GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
+            }
+
+            if (GetComponentInChildren<MeshRenderer>())
+                foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+                {
+                    rend.enabled = true;
+                    Color colour = rend.material.color;
+                    rend.material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
+                }
+            if (objInfo.objToHide)
+                objInfo.objToHide.SetActive(false);
         }
     }
 
@@ -80,9 +96,9 @@ public class MissionObject : MonoBehaviour {
             if (eventListener.heldObject.GetComponentInChildren<MeshRenderer>())
                 foreach (MeshRenderer rend in eventListener.heldObject.GetComponentsInChildren<MeshRenderer>())
                     rend.enabled = true;
-
             if (objInfo.objToHide)
                 objInfo.objToHide.SetActive(false);
+
         }
     }
 }
