@@ -53,7 +53,6 @@ public class MissionObject : MonoBehaviour {
             }
             objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
-        Debug.Log(objectInfo.name);
     }
 
     IEnumerator GrabObject(ObjectInfo objectInfo, Vector3 rotationModifier)

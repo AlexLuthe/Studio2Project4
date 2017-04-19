@@ -73,11 +73,19 @@ public class EventListener : MonoBehaviour {
                                     Destroy(heldObject);
                                     heldObject = null;
                                     if (hitObject.GetComponent<MeshRenderer>())
+                                    {
                                         hitObject.GetComponent<MeshRenderer>().enabled = true;
+                                        Color colour = hitObject.GetComponent<MeshRenderer>().material.color;
+                                        hitObject.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
+                                    }
 
                                     if (hitObject.GetComponentInChildren<MeshRenderer>())
                                         foreach (MeshRenderer rend in hitObject.GetComponentsInChildren<MeshRenderer>())
+                                        {
                                             rend.enabled = true;
+                                            Color colour = rend.material.color;
+                                            rend.material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
+                                        }
                                 }
                                 ++missionProg[missionIndex];
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;
