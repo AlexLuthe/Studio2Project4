@@ -10,12 +10,13 @@ public class ShaderOutline : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        missionObjects = FindObjectsOfType<MissionObject>();
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+		missionObjects = FindObjectsOfType<MissionObject>();
         foreach (MissionObject mobj in missionObjects)
         {
             for (int mObjIndex = 0; mObjIndex < eventListener.missionProg.Length; ++mObjIndex)
