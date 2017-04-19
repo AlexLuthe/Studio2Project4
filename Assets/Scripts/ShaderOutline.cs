@@ -16,7 +16,11 @@ public class ShaderOutline : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+<<<<<<< HEAD
         missionObjects = FindObjectsOfType<MissionObject>();
+=======
+		missionObjects = FindObjectsOfType<MissionObject>();
+>>>>>>> 8f4aac499805b37701f09d0f24dd1c16c5919832
         foreach (MissionObject mobj in missionObjects)
         {
             for (int mObjIndex = 0; mObjIndex < eventListener.missionProg.Length; ++mObjIndex)
