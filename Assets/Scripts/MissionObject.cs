@@ -30,51 +30,50 @@ public class MissionObject : MonoBehaviour {
         objectInfo.anim = this.GetComponent<Animator>();
     }
 
-    public void objectListener(ObjectInfo objectInfo, GameObject heldObject, Vector3 rotationModifier)
+    public void objectListener(ObjectInfo objInfo, GameObject heldObject, Vector3 rotationModifier)
     {
         // Do stuff
-        if (objectInfo.interactType && heldObject == null)
+        if (objInfo.interactType && heldObject == null)
         {
-            StartCoroutine(GrabObject(objectInfo, rotationModifier));
+            StartCoroutine(GrabObject(objInfo, rotationModifier));
         }
         else
         {
-            if (objectInfo.anim && objectInfo.animClip)
+            /*if (objectInfo.anim && objectInfo.animClip)
             {
                 objectInfo.anim.enabled = true;
-            }
+            }*/
 
             if (objectInfo.audioSource.Length > 0)
             {
                 for (int index = 0; index < objectInfo.audioSource.Length; ++index)
                 {
-                    objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
+                    objectInfo.audioSource[index].PlayDelayed(objInfo.delay[index]);
                 }
             }
-            objectInfo.obj.GetComponent<BoxCollider>().enabled = false;
+            objInfo.obj.GetComponent<BoxCollider>().enabled = false;
         }
-        Debug.Log(objectInfo.name);
     }
 
-    IEnumerator GrabObject(ObjectInfo objectInfo, Vector3 rotationModifier)
+    IEnumerator GrabObject(ObjectInfo objInfo, Vector3 rotationModifier)
     {
         if (eventListener.heldObject == null)
         {
-            if (objectInfo.anim && objectInfo.animClip)
+            /*if (objectInfo.anim && objectInfo.animClip)
             {
                 objectInfo.anim.enabled = true;
                 yield return new WaitForSeconds(objectInfo.animClip.length);
-            }
-            else
-                yield return null;
+            }*/
+            //else
+            yield return null;
 
             // Grab
-            objectInfo.obj.transform.parent = Camera.main.transform;
+            objInfo.obj.transform.parent = Camera.main.transform;
             //objectInfo.obj.transform.localPosition = new Vector3(xPickupModifier, yPickupModifier, zPickupModifier);
-            objectInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + rotationModifier.x,
+            objInfo.obj.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x + rotationModifier.x,
                 Camera.main.transform.eulerAngles.y + rotationModifier.y,
                 Camera.main.transform.eulerAngles.z + rotationModifier.z);
-            eventListener.heldObject = objectInfo.obj;
+            eventListener.heldObject = objInfo.obj;
             if (eventListener.heldObject.GetComponent<MeshRenderer>())
                 eventListener.heldObject.GetComponent<MeshRenderer>().enabled = true;
 
@@ -82,8 +81,8 @@ public class MissionObject : MonoBehaviour {
                 foreach (MeshRenderer rend in eventListener.heldObject.GetComponentsInChildren<MeshRenderer>())
                     rend.enabled = true;
 
-            if (objectInfo.objToHide)
-                objectInfo.objToHide.SetActive(false);
+            if (objInfo.objToHide)
+                objInfo.objToHide.SetActive(false);
         }
     }
 }
