@@ -4,6 +4,7 @@
 	{
 		//Graphics.Blit() sets the "_MainTex" property to the texture passed in
 		_MainTex("Main Texture",2D) = "black"{}
+		_Colour("Outline Color",Color) = (0,1,1,1)
 	}
 		SubShader
 		{
@@ -13,7 +14,7 @@
 				CGPROGRAM
 
 				sampler2D _MainTex;
-
+				half4 _Colour;
 				float2 _MainTex_TexelSize;
 
 				#pragma vertex vert
@@ -75,7 +76,7 @@
 				}
 
 				//output some intensity of teal
-				return ColorIntensityInRadius*half4(0,1,1,1);
+				return ColorIntensityInRadius*_Colour;
 			}
 			ENDCG
 		}

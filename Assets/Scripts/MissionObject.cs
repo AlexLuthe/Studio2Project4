@@ -14,7 +14,8 @@ public class MissionObject : MonoBehaviour {
         public string name;
         public bool interactType; // True for pick up, false to interact 
         public bool held;
-        public GameObject objToHide;
+        public GameObject[] objsToHide;
+        public GameObject[] objsToShow; // For those fancy effects you kids seem to want
         public GameObject obj;
         public float timer;
     }
@@ -66,8 +67,16 @@ public class MissionObject : MonoBehaviour {
                     Color colour = rend.material.color;
                     rend.material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
                 }
-            if (objInfo.objToHide)
-                objInfo.objToHide.SetActive(false);
+            if (objInfo.objsToHide.Length > 0)
+                foreach (GameObject objToHide in objInfo.objsToHide)
+                {
+                    objToHide.SetActive(false);
+                }
+            if (objInfo.objsToShow.Length > 0)
+                foreach (GameObject objToShow in objInfo.objsToShow)
+                {
+                    objToShow.SetActive(true);
+                }
         }
     }
 
@@ -96,9 +105,16 @@ public class MissionObject : MonoBehaviour {
             if (eventListener.heldObject.GetComponentInChildren<MeshRenderer>())
                 foreach (MeshRenderer rend in eventListener.heldObject.GetComponentsInChildren<MeshRenderer>())
                     rend.enabled = true;
-            if (objInfo.objToHide)
-                objInfo.objToHide.SetActive(false);
-
+            if (objInfo.objsToHide.Length > 0)
+                foreach (GameObject objToHide in objInfo.objsToHide)
+                {
+                    objToHide.SetActive(false);
+                }
+            if (objInfo.objsToShow.Length > 0)
+                foreach (GameObject objToShow in objInfo.objsToShow)
+                {
+                    objToShow.SetActive(true);
+                }
         }
     }
 }
