@@ -75,7 +75,7 @@ public class MissionObject : MonoBehaviour {
             if (objInfo.objsToShow.Length > 0)
                 foreach (GameObject objToShow in objInfo.objsToShow)
                 {
-                    objToShow.SetActive(false);
+                    objToShow.SetActive(true);
                 }
         }
     }
@@ -113,7 +113,7 @@ public class MissionObject : MonoBehaviour {
             if (objInfo.objsToShow.Length > 0)
                 foreach (GameObject objToShow in objInfo.objsToShow)
                 {
-                    objToShow.SetActive(false);
+                    objToShow.SetActive(true);
                 }
         }
     }
