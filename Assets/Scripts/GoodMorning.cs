@@ -35,8 +35,8 @@ public class GoodMorning : MonoBehaviour {
                 }
                 if (anima)
                 {
-                    anima.Play();
-                    audSource.Play();
+                    anima1.Play();
+                    audSource1.Play();
                     transform.position = new Vector3(26.808f, 13.58f, 51.267f);
                     transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
