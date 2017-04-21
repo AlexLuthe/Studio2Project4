@@ -45,12 +45,11 @@ public class MissionObject : MonoBehaviour {
                 objectInfo.anim.enabled = true;
             }*/
 
-            if (objectInfo.audioSource.Length > 0)
+            if (objectInfo.audioSource.Length > 0 && eventListener.missionProg[missionProg[0]] <= missionProg[1] + 1)
             {
-                for (int index = 0; index < objectInfo.audioSource.Length; ++index)
-                {
-                    if (objectInfo.audioSource[index])
-                    objectInfo.audioSource[index].PlayDelayed(objInfo.delay[index]);
+                for (int index = 0; index < objectInfo.audioSource.Length; ++index) {
+                    if (objectInfo.audioSource[index]) { }
+                        objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
                 }
             }
             objInfo.obj.GetComponent<BoxCollider>().enabled = false;
