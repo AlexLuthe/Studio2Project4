@@ -83,3 +83,23 @@ Cereal    Coffee    Shower    Toilet    Music
 _________________________
 Cereal    Coffee    Shower    Toilet    Music
 0         0         0         0         1
+_________________________
+Cereal    Coffee    Shower    Toilet    Music
+0         0         0         0         1
+0         0         1         0         1
+0         0         2         0         1
+0         0         3         0         1
+0         0         4         0         1
+0         0         4         1         1
+0         0         4         2         1
+0         0         4         3         1
+0         0         4         4         1
+_________________________
+Cereal    Coffee    Shower    Toilet    Music
+0         0         0         0         1
+0         0         0         1         1
+0         0         0         2         1
+0         0         0         3         1
+0         0         0         4         1
+1         0         0         4         1
+2         0         0         4         1
