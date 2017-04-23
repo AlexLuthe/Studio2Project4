@@ -25,6 +25,7 @@ public class EventListener : MonoBehaviour {
     public AudioSource _audioSource;
     bool holdingMilk = false;
     float milkTimer = 0;
+    float gameTimer = 0;
 
     bool startedGame = false;
 
@@ -43,8 +44,11 @@ public class EventListener : MonoBehaviour {
                 missionTimers[index] -= Time.deltaTime;
         }
 
+        gameTimer += Time.deltaTime;
+
         if (milkTimer > 0)
             milkTimer -= Time.deltaTime;
+
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
@@ -118,11 +122,11 @@ public class EventListener : MonoBehaviour {
                                     }
                                     using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
                                         file.WriteLine("_________________________");
-                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Music");
+                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Music    Time");
                                     }
                                 }
                                 using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
-                                    file.WriteLine(missionProg[0] + "         " + missionProg[1] + "         " + missionProg[2] + "         " + missionProg[3] + "         " + missionProg[4]);
+                                    file.WriteLine(missionProg[0] + "         " + missionProg[1] + "         " + missionProg[2] + "         " + missionProg[3] + "         " + missionProg[4] + "         " + gameTimer);
                                 }
                             }
                         }

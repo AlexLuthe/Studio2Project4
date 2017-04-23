@@ -41,6 +41,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        
+        [SerializeField] private Vector4 levelBounds = new Vector4(-11, -6.5f, 3, 9); // minX, minY, maxX, maxY
 
         // Use this for initialization
         private void Start()
@@ -81,6 +83,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+            if (transform.position.x < levelBounds.x || transform.position.x > levelBounds.z || transform.position.y < levelBounds.y || transform.position.y > levelBounds.w) {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/out_of_bounds.txt", true)) {
+                    file.WriteLine("Position: " + transform.position);
+                }
+            }
         }
 
 
