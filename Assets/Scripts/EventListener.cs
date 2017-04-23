@@ -95,7 +95,7 @@ public class EventListener : MonoBehaviour {
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;
                                 m_event.Invoke(hitObject.objectInfo, heldObject, new Vector3(xRotationModifier, yRotationModifier, zRotationModifier));
 
-                                if (!startedGame)
+                                if (!startedGame && missionProg[4] > 0)
                                 {
                                     startedGame = true;
                                     Analytics.CustomEvent("First Object", new Dictionary<string, object>
@@ -104,7 +104,7 @@ public class EventListener : MonoBehaviour {
                                     {"Coffee", missionProg[1]},
                                     {"Shower", missionProg[2]},
                                     {"Toilet", missionProg[3]},
-                                    {"Music", missionProg[4]}
+                                    {"Alarm", missionProg[4]}
                                 });
                                     using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/first_mission.txt", true)) {
                                         string mission = "";
@@ -117,12 +117,12 @@ public class EventListener : MonoBehaviour {
                                         else if (missionProg[3] > 0)
                                             mission = "Toilet";
                                         else
-                                            mission = "Music";
+                                            mission = "Alarm";
                                         file.WriteLine(mission);
                                     }
                                     using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
                                         file.WriteLine("_________________________");
-                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Music    Time");
+                                        file.WriteLine("Cereal    Coffee    Shower    Toilet    Alarm    Time");
                                     }
                                 }
                                 using (System.IO.StreamWriter file = new System.IO.StreamWriter("Analytics/mission_rec.txt", true)) {
