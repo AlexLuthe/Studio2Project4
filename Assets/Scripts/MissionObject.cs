@@ -18,6 +18,7 @@ public class MissionObject : MonoBehaviour {
         public GameObject[] objsToShow; // For those fancy effects you kids seem to want
         public GameObject obj;
         public float timer;
+        public int mission;
     }
 
     EventListener eventListener;
@@ -45,8 +46,9 @@ public class MissionObject : MonoBehaviour {
                 objectInfo.anim.enabled = true;
             }*/
 
-            if (objectInfo.audioSource.Length > 0 && eventListener.missionProg[missionProg[0]] <= missionProg[1] + 1)
+            if (objectInfo.audioSource.Length > 0 && eventListener.missionProg[missionProg[0]] == missionProg[1] + 1 && missionProg[0] == objInfo.mission)
             {
+
                 for (int index = 0; index < objectInfo.audioSource.Length; ++index) {
                     if (objectInfo.audioSource[index]) { }
                         objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
