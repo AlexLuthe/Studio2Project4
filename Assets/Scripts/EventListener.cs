@@ -76,7 +76,7 @@ public class EventListener : MonoBehaviour {
                                 {
                                     Destroy(heldObject);
                                     heldObject = null;
-                                    if (hitObject.GetComponent<MeshRenderer>())
+                                    /*if (hitObject.GetComponent<MeshRenderer>())
                                     {
                                         hitObject.GetComponent<MeshRenderer>().enabled = true;
                                         Color colour = hitObject.GetComponent<MeshRenderer>().material.color;
@@ -90,6 +90,7 @@ public class EventListener : MonoBehaviour {
                                             Color colour = rend.material.color;
                                             rend.material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
                                         }
+                                        */
                                 }
                                 ++missionProg[missionIndex];
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;

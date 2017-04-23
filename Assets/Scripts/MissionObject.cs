@@ -25,14 +25,14 @@ public class MissionObject : MonoBehaviour {
     public ObjectInfo objectInfo;
     public int[] missionProg = new int[2];
 
-    private void Start()
+    public virtual void Start()
     {
         eventListener = GameObject.FindObjectOfType<EventListener>();
         objectInfo.obj = this.gameObject;
         objectInfo.anim = this.GetComponent<Animator>();
     }
 
-    public void objectListener(ObjectInfo objInfo, GameObject heldObject, Vector3 rotationModifier)
+    public virtual void objectListener(ObjectInfo objInfo, GameObject heldObject, Vector3 rotationModifier)
     {
         // Do stuff
         if (objInfo.interactType && heldObject == null)
@@ -48,9 +48,9 @@ public class MissionObject : MonoBehaviour {
 
             if (objectInfo.audioSource.Length > 0 && eventListener.missionProg[missionProg[0]] == missionProg[1] + 1 && missionProg[0] == objInfo.mission)
             {
-
-                for (int index = 0; index < objectInfo.audioSource.Length; ++index) {
-                    if (objectInfo.audioSource[index]) { }
+                for (int index = 0; index < objectInfo.audioSource.Length; ++index)
+                {
+                    if (objectInfo.audioSource[index])
                         objectInfo.audioSource[index].PlayDelayed(objectInfo.delay[index]);
                 }
             }
