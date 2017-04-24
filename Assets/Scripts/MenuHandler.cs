@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
+
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Options")
@@ -35,7 +36,15 @@ public class MenuHandler : MonoBehaviour
 
     public void Options()
     {
-        SceneManager.LoadScene("Options");
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+        if (SceneManager.GetActiveScene().name == "Pause")
+        {
+            SceneManager.UnloadSceneAsync("Pause");
+        }
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            SceneManager.UnloadSceneAsync("Menu");
+        }
     }
 
     public void Credits()
@@ -51,6 +60,19 @@ public class MenuHandler : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void Return()
+    {
+        if(SceneManager.GetSceneByName("Master Scene").isLoaded)
+        {
+            SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
+            SceneManager.UnloadSceneAsync("Options");
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     public void SaveOptions()
