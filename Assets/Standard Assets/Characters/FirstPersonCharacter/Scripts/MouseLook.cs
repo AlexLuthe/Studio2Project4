@@ -33,6 +33,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
+        public void Awake()
+        {
+            using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
+            {
+                yInvert = int.Parse(file.ReadLine());
+            }
+        }
+
 
         public void LookRotation(Transform character, Transform camera)
         {

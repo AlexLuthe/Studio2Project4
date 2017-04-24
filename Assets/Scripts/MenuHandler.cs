@@ -6,6 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Options")
+        {
+            int yInvert;
+            using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
+            {
+                yInvert = int.Parse(file.ReadLine());
+            }
+            if (yInvert > 0)
+                GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = true;
+            else
+                GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = false;
+        }
+    }
 
     public void PlayGame()
     {
@@ -48,7 +63,7 @@ public class MenuHandler : MonoBehaviour
             if (invertY)
                 file.WriteLine("1");
             else
-                file.WriteLine("0");
+                file.WriteLine("-1");
         }
     }
 }
