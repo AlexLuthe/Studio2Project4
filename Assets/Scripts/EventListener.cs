@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Event : UnityEvent<MissionObject.ObjectInfo, GameObject, Vector3>
@@ -49,6 +50,10 @@ public class EventListener : MonoBehaviour {
         if (milkTimer > 0)
             milkTimer -= Time.deltaTime;
 
+        if (missionProg[6] == 36)
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
@@ -95,6 +100,7 @@ public class EventListener : MonoBehaviour {
                                 ++missionProg[missionIndex];
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;
                                 m_event.Invoke(hitObject.objectInfo, heldObject, new Vector3(xRotationModifier, yRotationModifier, zRotationModifier));
+                                ++missionProg[6];
 
                                 if (!startedGame && missionProg[4] > 0)
                                 {

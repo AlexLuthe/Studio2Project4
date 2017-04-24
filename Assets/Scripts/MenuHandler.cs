@@ -15,7 +15,7 @@ public class MenuHandler : MonoBehaviour
         SceneManager.LoadScene("Toilet Mission", LoadSceneMode.Additive);
         SceneManager.LoadScene("Shower Mission", LoadSceneMode.Additive);
         SceneManager.LoadScene("Wake Up", LoadSceneMode.Additive);
-        SceneManager.LoadScene("End Game", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Key End", LoadSceneMode.Additive);
     }
 
     public void Options()
