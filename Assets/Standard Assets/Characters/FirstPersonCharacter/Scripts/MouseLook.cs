@@ -33,7 +33,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        public void Awake()
+        public void LoadOptions()
         {
             using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
             {

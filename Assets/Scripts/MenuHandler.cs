@@ -60,6 +60,13 @@ public class MenuHandler : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+        SceneManager.UnloadSceneAsync("Master Scene");
+        SceneManager.UnloadSceneAsync("Cereal Mission");
+        SceneManager.UnloadSceneAsync("Coffee Mission");
+        SceneManager.UnloadSceneAsync("Toilet Mission");
+        SceneManager.UnloadSceneAsync("Shower Mission");
+        SceneManager.UnloadSceneAsync("Wake Up");
+        SceneManager.UnloadSceneAsync("Key End");
     }
 
     public void Return()
@@ -73,6 +80,7 @@ public class MenuHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
+        GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().m_MouseLook.LoadOptions();
     }
 
     public void SaveOptions()
@@ -83,9 +91,9 @@ public class MenuHandler : MonoBehaviour
         using (System.IO.StreamWriter file = new System.IO.StreamWriter("Assets/options.txt", false))
         {
             if (invertY)
-                file.WriteLine("1");
-            else
                 file.WriteLine("-1");
+            else
+                file.WriteLine("1");
         }
     }
 }

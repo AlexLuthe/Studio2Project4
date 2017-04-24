@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour {
     public GameObject wakeUp;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         fpsController.GetComponent<Animation>().Play();
         Animation[] eyelids = wakeUp.GetComponentsInChildren<Animation>();
         for(int index = 0; index < eyelids.Length; ++index)
