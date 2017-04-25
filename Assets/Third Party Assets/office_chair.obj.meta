@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: cbc362a639cbd0041ba3912692882809
+timeCreated: 1493097789
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
+    100004: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azul
+    100006: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_gris
+    100008: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negro
+    100010: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
+    100012: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
+    100014: sillaOfi_soporte._sillaOfi_soporte._metal
+    400000: //RootNode
+    400002: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
+    400004: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azul
+    400006: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_gris
+    400008: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negro
+    400010: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
+    400012: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
+    400014: sillaOfi_soporte._sillaOfi_soporte._metal
+    2300000: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
+    2300002: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azul
+    2300004: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_gris
+    2300006: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negro
+    2300008: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
+    2300010: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
+    2300012: sillaOfi_soporte._sillaOfi_soporte._metal
+    3300000: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
+    3300002: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azul
+    3300004: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_gris
+    3300006: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negro
+    3300008: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
+    3300010: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
+    3300012: sillaOfi_soporte._sillaOfi_soporte._metal
+    4300000: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
+    4300002: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azul
+    4300004: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_gris
+    4300006: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negro
+    4300008: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
+    4300010: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
+    4300012: sillaOfi_soporte._sillaOfi_soporte._metal
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
