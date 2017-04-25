@@ -58,7 +58,7 @@ public class EventListener : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if (Input.GetAxis("Interact") > 0 && m_event != null && Physics.Raycast(ray, out hitInfo, maxReach))
+        if (Input.GetAxis("Fire1") > 0 && m_event != null && Physics.Raycast(ray, out hitInfo, maxReach))
         {
             if (hitInfo.collider.gameObject.GetComponent<MissionObject>())
             {
