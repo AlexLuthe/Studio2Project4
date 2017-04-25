@@ -927,3 +927,41 @@ Cereal    Coffee    Shower    Toilet    Alarm    Time
 _________________________
 Cereal    Coffee    Shower    Toilet    Alarm    Time
 0         0         0         0         1         4.96512
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         8.391561
+0         0         0         1         1         97.49946
+0         0         0         2         1         101.7794
+0         0         0         3         1         103.8833
+0         0         0         4         1         108.8963
+0         0         0         5         1         110.8166
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.489739
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.345102
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.46949
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         5.336726
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.128294
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.045134
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.212156
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.950219
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         4.391157
+_________________________
+Cereal    Coffee    Shower    Toilet    Alarm    Time
+0         0         0         0         1         8.66939
