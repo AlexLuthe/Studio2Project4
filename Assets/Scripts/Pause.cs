@@ -23,14 +23,7 @@ public class Pause : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown("Start")) {// || Input.GetKeyDown(KeyCode.P)) {
             if (paused) {
-                Time.timeScale = 1;
-                pauseMenu.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                fpsController.SetActive(true);
-                camera.transform.parent = fpsController.transform;
-                camera.transform.position = colourCam.transform.position;
-                paused = false;
+                Unpause();
             }
             else {
                 Time.timeScale = 0;
@@ -52,6 +45,7 @@ public class Pause : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         fpsController.SetActive(true);
+        fpsController.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().m_MouseLook.LoadOptions();
         camera.transform.parent = fpsController.transform;
         camera.transform.position = colourCam.transform.position;
         paused = false;

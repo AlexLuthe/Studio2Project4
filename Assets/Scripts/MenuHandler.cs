@@ -6,20 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
+    int yInvert;
 
     private void Awake()
     {
+        ReadIn();
+    }
+
+    void ReadIn ()
+    {
         if (SceneManager.GetActiveScene().name == "Options")
         {
-            int yInvert;
             using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
             {
                 yInvert = int.Parse(file.ReadLine());
             }
-            if (yInvert > 0)
+            if (yInvert == -1)
                 GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = true;
-            else
+            else if (yInvert == 1)
                 GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = false;
+
+            Debug.Log("I am running");
+            GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = true;
         }
     }
 
@@ -37,6 +45,7 @@ public class MenuHandler : MonoBehaviour
     public void Options()
     {
         SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+        ReadIn();
         if (SceneManager.GetActiveScene().name == "Pause")
         {
             SceneManager.UnloadSceneAsync("Pause");
@@ -80,7 +89,6 @@ public class MenuHandler : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
-        GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().m_MouseLook.LoadOptions();
     }
 
     public void SaveOptions()
