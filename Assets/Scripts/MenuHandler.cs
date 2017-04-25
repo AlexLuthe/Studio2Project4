@@ -45,7 +45,6 @@ public class MenuHandler : MonoBehaviour
     public void Options()
     {
         SceneManager.LoadScene("Options", LoadSceneMode.Additive);
-        ReadIn();
         if (SceneManager.GetActiveScene().name == "Pause")
         {
             SceneManager.UnloadSceneAsync("Pause");
@@ -54,6 +53,7 @@ public class MenuHandler : MonoBehaviour
         {
             SceneManager.UnloadSceneAsync("Menu");
         }
+        ReadIn();
     }
 
     public void Credits()

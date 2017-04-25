@@ -13,11 +13,19 @@ public class Pause : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        fpsController.GetComponent<Animation>().Play();
-        Animation[] eyelids = wakeUp.GetComponentsInChildren<Animation>();
-        for(int index = 0; index < eyelids.Length; ++index)
-            eyelids[index].Play();
-	}
+        PlayAnimation();
+    }
+
+    void PlayAnimation ()
+    {
+        if (!fpsController.GetComponent<Animation>().isPlaying)
+        {
+            fpsController.GetComponent<Animation>().Play();
+            Animation[] eyelids = wakeUp.GetComponentsInChildren<Animation>();
+            for (int index = 0; index < eyelids.Length; ++index)
+                eyelids[index].Play();
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +39,6 @@ public class Pause : MonoBehaviour {
                 fpsController.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                fpsController.GetComponent<Animation>().enabled = false;
                 fpsController.SetActive(false);
                 camera.transform.parent = null;
                 paused = true;
@@ -49,5 +56,6 @@ public class Pause : MonoBehaviour {
         camera.transform.parent = fpsController.transform;
         camera.transform.position = colourCam.transform.position;
         paused = false;
+        PlayAnimation();
     }
 }

@@ -24,5 +24,6 @@ public class GetUp : MissionObject {
 
         characterController.enabled = true;
         fpsController.enabled = true;
+        playerGO.GetComponent<Animation>().enabled = false;
     }
 }
