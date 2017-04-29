@@ -27,7 +27,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
 
-            using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/options.txt"))
             {
                 yInvert = int.Parse(file.ReadLine());
             }
@@ -35,7 +35,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LoadOptions()
         {
-            using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/options.txt"))
             {
                 yInvert = int.Parse(file.ReadLine());
             }

@@ -13,11 +13,11 @@ public class MenuHandler : MonoBehaviour
         ReadIn();
     }
 
-    void ReadIn ()
+    public void ReadIn ()
     {
         if (SceneManager.GetActiveScene().name == "Options")
         {
-            using (System.IO.StreamReader file = new System.IO.StreamReader("Assets/options.txt"))
+            using (System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/options.txt"))
             {
                 yInvert = int.Parse(file.ReadLine());
             }
@@ -96,7 +96,7 @@ public class MenuHandler : MonoBehaviour
         bool invertY = GameObject.Find("togInvertY").GetComponent<Toggle>().isOn;
 
 
-        using (System.IO.StreamWriter file = new System.IO.StreamWriter("Assets/options.txt", false))
+        using (System.IO.StreamWriter file = new System.IO.StreamWriter(Application.dataPath + "/options.txt", false))
         {
             if (invertY)
                 file.WriteLine("-1");

@@ -7,7 +7,7 @@ public class Pause : MonoBehaviour {
     bool paused = false;
     public GameObject pauseMenu;
     public GameObject fpsController;
-    public GameObject camera;
+    public GameObject cam;
     public GameObject colourCam;
     public GameObject wakeUp;
 
@@ -40,7 +40,7 @@ public class Pause : MonoBehaviour {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 fpsController.SetActive(false);
-                camera.transform.parent = null;
+                cam.transform.parent = null;
                 paused = true;
             }
         }
@@ -53,8 +53,8 @@ public class Pause : MonoBehaviour {
         Cursor.visible = false;
         fpsController.SetActive(true);
         fpsController.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().m_MouseLook.LoadOptions();
-        camera.transform.parent = fpsController.transform;
-        camera.transform.position = colourCam.transform.position;
+        cam.transform.parent = fpsController.transform;
+        cam.transform.position = colourCam.transform.position;
         paused = false;
         PlayAnimation();
     }
