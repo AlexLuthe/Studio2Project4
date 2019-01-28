@@ -1,4 +1,6 @@
-﻿Shader "Custom/DrawSimple"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/DrawSimple"
 {
 	SubShader
 	{
@@ -20,7 +22,7 @@
 			VertexToFragment VShader(VertexToFragment i)
 			{
 				VertexToFragment o;
-				o.pos = mul(UNITY_MATRIX_MVP,i.pos);
+				o.pos = UnityObjectToClipPos(i.pos);
 				return o;
 			}
 

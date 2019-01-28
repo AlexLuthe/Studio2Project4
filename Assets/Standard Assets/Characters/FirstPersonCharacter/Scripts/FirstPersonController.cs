@@ -40,7 +40,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_StepCycle;
         private float m_NextStep;
         private bool m_Jumping;
-        private AudioSource m_AudioSource;
+        private AudioSource m_AudioSource;        
         
         [SerializeField] private Vector4 levelBounds = new Vector4(-11, -6.5f, 3, 9); // minX, minY, maxX, maxY
 
@@ -48,7 +48,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
+            m_Camera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
@@ -264,6 +264,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
-        }
+        }        
     }
 }

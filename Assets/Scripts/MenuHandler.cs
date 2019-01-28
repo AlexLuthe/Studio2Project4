@@ -8,9 +8,23 @@ public class MenuHandler : MonoBehaviour
 {
     int yInvert;
 
+    public Animator menuEyes;
+    public Slider masterVolume;
+    public Slider masterFOV;
+    public Camera playerCam;
+    public float tempVol;
+    public float tempFOV;
+
     private void Awake()
     {
         ReadIn();
+        Cursor.visible = false;
+    }
+
+    public void FixedUpdate()
+    {
+        changeMasterVolume();
+        changeFOV();
     }
 
     public void ReadIn ()
@@ -33,18 +47,12 @@ public class MenuHandler : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Master Scene");
-        SceneManager.LoadScene("Cereal Mission", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Coffee Mission", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Toilet Mission", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Shower Mission", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Wake Up", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Key End", LoadSceneMode.Additive);
+        StartCoroutine(LoadGameAfterDelay("Master Scene", "Wake Up", "Cereal Mission", "Coffee Mission", "Toilet Mission", "Shower Mission", "Key End", 0.80f));
     }
 
     public void Options()
     {
-        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+        StartCoroutine(LoadSceneAfterDelay("Options", 0.80f));
         if (SceneManager.GetActiveScene().name == "Pause")
         {
             SceneManager.UnloadSceneAsync("Pause");
@@ -58,7 +66,7 @@ public class MenuHandler : MonoBehaviour
 
     public void Credits()
     {
-        SceneManager.LoadScene("Credits");
+        StartCoroutine(LoadSceneAfterDelay("Credits", 0.80f));
     }
 
     public void Exit()
@@ -68,7 +76,7 @@ public class MenuHandler : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene("Menu");
+        StartCoroutine(LoadSceneAfterDelay("Menu", 0.80f));
         SceneManager.UnloadSceneAsync("Master Scene");
         SceneManager.UnloadSceneAsync("Cereal Mission");
         SceneManager.UnloadSceneAsync("Coffee Mission");
@@ -87,7 +95,7 @@ public class MenuHandler : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Menu");
+            StartCoroutine(LoadSceneAfterDelay("Menu", 0.80f));
         }
     }
 
@@ -103,5 +111,49 @@ public class MenuHandler : MonoBehaviour
             else
                 file.WriteLine("1");
         }
+    }
+
+    public void changeMasterVolume()
+    {
+        if (masterVolume != null)
+        {
+            masterVolume = GameObject.FindGameObjectWithTag("MasterVolume").GetComponent<Slider>();
+            AudioListener.volume = masterVolume.value;
+            tempVol = masterVolume.value;
+        }
+        else if (masterVolume = null)
+            AudioListener.volume = tempVol;            
+    }
+
+    public void changeFOV()
+    {
+        if (masterFOV != null)
+        {
+            masterFOV = GameObject.FindGameObjectWithTag("FOV").GetComponent<Slider>();
+            playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
+            playerCam.fieldOfView = masterFOV.value;
+            tempFOV = masterFOV.value;
+        }
+        else if (masterFOV = null)
+            playerCam.fieldOfView = tempFOV;
+    }
+
+    public IEnumerator LoadSceneAfterDelay(string sceneName, float seconds)
+    {
+        menuEyes.Play("MenuClose");
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(sceneName);
+    }
+    public IEnumerator LoadGameAfterDelay(string sceneName1, string sceneName2, string sceneName3, string sceneName4, string sceneName5, string sceneName6, string sceneName7, float seconds)
+    {
+        menuEyes.Play("MenuClose");
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(sceneName1);
+        SceneManager.LoadScene(sceneName2, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName3, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName4, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName5, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName6, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName7, LoadSceneMode.Additive);
     }
 }

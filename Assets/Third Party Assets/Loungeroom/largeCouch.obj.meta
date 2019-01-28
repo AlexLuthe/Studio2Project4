@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: 3deb0376dd0781147919699d3eab1690
-timeCreated: 1491372165
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: PolyMesh_1
@@ -102,26 +100,129 @@ ModelImporter:
     4300032: PolyMesh_5_1
     4300034: PolyMesh_5_2
     4300036: PolyMesh_5_3
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1Mat
+    second: {fileID: 2100000, guid: c66f1885d9a20564bb3d8e147bcec06c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1_1Mat
+    second: {fileID: 2100000, guid: 4189719a82f32584c898cea693840bd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1_2Mat
+    second: {fileID: 2100000, guid: 27d5cbfadfc04c54596f33f544f6d915, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1_3Mat
+    second: {fileID: 2100000, guid: 0ea6273de59d94248a594b14e22ddd55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1_4Mat
+    second: {fileID: 2100000, guid: 524cb30c7ae0a09428d3221a8e6eafb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_1_5Mat
+    second: {fileID: 2100000, guid: 51611d0ef69b3174abc9d13318828aa4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_2Mat
+    second: {fileID: 2100000, guid: 9a3622e1dbbc2124e82864833a1ae5af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_2_1Mat
+    second: {fileID: 2100000, guid: 7206010b4a61a0345893edeff75f436c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_2_2Mat
+    second: {fileID: 2100000, guid: c5cfd7d873d42534281c9a1f4994cd77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_2_3Mat
+    second: {fileID: 2100000, guid: d3f6556ebd964b84280a5ea89b9d9afd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_3Mat
+    second: {fileID: 2100000, guid: f2d367b78f95d604ea3f7692a8b20060, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_3_1Mat
+    second: {fileID: 2100000, guid: 1a29ba39fd289f146915dd3057709c8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_4Mat
+    second: {fileID: 2100000, guid: c5eec564fbec46e4f827166d665da04c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_4_1Mat
+    second: {fileID: 2100000, guid: b8d82b4c1dd8344468451fc28bc4e57a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_4_2Mat
+    second: {fileID: 2100000, guid: 3c754d5d3ceda154cb4e30854ec345fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_5Mat
+    second: {fileID: 2100000, guid: 6f2b3d05fbf8a1548aa79bfafe3290ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_5_1Mat
+    second: {fileID: 2100000, guid: 23c9f31c78fc5be47acf1ed9f05cd199, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_5_2Mat
+    second: {fileID: 2100000, guid: 609f6b8bd43e23c47a6b77835a460222, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PolyMesh_5_3Mat
+    second: {fileID: 2100000, guid: 0f00e9b07ecc6154cb0580deebbb7c24, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -129,22 +230,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

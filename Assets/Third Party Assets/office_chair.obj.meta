@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: cbc362a639cbd0041ba3912692882809
-timeCreated: 1493097789
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negro
@@ -42,26 +40,69 @@ ModelImporter:
     4300008: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_gris
     4300010: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negro
     4300012: sillaOfi_soporte._sillaOfi_soporte._metal
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_respaldo.001_sillaOfi_respaldo.001_plastico_negroMat
+    second: {fileID: 2100000, guid: 306e26b6b8ede5d4fa8b2d475240ed49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_respaldo_sillaOfi_respaldo_tela_sillon_azulMat
+    second: {fileID: 2100000, guid: 5bca1971374c1024bac5cefc2721ca27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_ruedas.001_C_sillaOfi_ruedas.001_C_plastico_grisMat
+    second: {fileID: 2100000, guid: 0b1c4e89c6ac4df4588c9bb2371ef35e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_ruedas.0_sillaOfi_ruedas.0_plastico_negroMat
+    second: {fileID: 2100000, guid: 32b8276459c898e48abe8f878a7a09cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_soporte..001_sillaOfi_soporte..001_plastico_grisMat
+    second: {fileID: 2100000, guid: c0293345221d549498c17525d16c477d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_soporte.001__sillaOfi_soporte.001__plastico_negroMat
+    second: {fileID: 2100000, guid: 6649c06d3b6024244a8d585c9c77eac8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sillaOfi_soporte._sillaOfi_soporte._metalMat
+    second: {fileID: 2100000, guid: a77122ad9873f26449efc0113ca8fe21, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -69,22 +110,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

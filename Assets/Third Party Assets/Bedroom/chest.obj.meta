@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: aafc492661b1f5c4f8cb2069b57c0d57
-timeCreated: 1491921802
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: Circle
@@ -67,26 +65,94 @@ ModelImporter:
     4300018: Circle.009_Circle
     4300020: Circle.010_Circle
     4300022: Cube
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.001_CircleMat
+    second: {fileID: 2100000, guid: 3b4897017ef69ab4298fc7f210cf7133, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.002_CircleMat
+    second: {fileID: 2100000, guid: a54139f89abb3cf448e69ef37ba9d004, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.003_CircleMat
+    second: {fileID: 2100000, guid: 22b9b9c4782f63f478ffbec3c9506204, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.004_CircleMat
+    second: {fileID: 2100000, guid: 6cb82a474b681ce4db491aaf67cca8b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.005_CircleMat
+    second: {fileID: 2100000, guid: 51c162993d6a29542aba2e198bcd56f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.006_CircleMat
+    second: {fileID: 2100000, guid: 7629a8cd22f70954ca8fbe6fe3d128fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.007_CircleMat
+    second: {fileID: 2100000, guid: fbf08db323a857b409d5175f833420e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.008_CircleMat
+    second: {fileID: 2100000, guid: 5aac8067dee5f304c87721334e131584, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.009_CircleMat
+    second: {fileID: 2100000, guid: 86fe04a741e4289438749312ac2aff34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.010_CircleMat
+    second: {fileID: 2100000, guid: 66cd6a2e36cf6d9499796ef1f4d5580a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CircleMat
+    second: {fileID: 2100000, guid: 3bb8085e30970c54ab477af27efc2cc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CubeMat
+    second: {fileID: 2100000, guid: 88a7b5ca610b9154593924c35b8cab44, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -94,22 +160,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

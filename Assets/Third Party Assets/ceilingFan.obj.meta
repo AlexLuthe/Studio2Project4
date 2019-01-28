@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: d1e4a4316d026dd418d9a59c8320a132
-timeCreated: 1491921960
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     100002: Circle
@@ -102,26 +100,129 @@ ModelImporter:
     4300032: Plane
     4300034: Plane.001_Plane
     4300036: Plane.002_Plane
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.009_Circle.001Mat
+    second: {fileID: 2100000, guid: 7565e230c277b1743848a73620f8a99c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.010_Circle.001Mat
+    second: {fileID: 2100000, guid: d0a0fd5542e4fcd43a56d8d103a32667, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.011_Circle.001Mat
+    second: {fileID: 2100000, guid: 3576c9a5911890447af5075af655322b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.012_Circle.001Mat
+    second: {fileID: 2100000, guid: ee3ee0a5c90a6574f99ad006c1c737d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.013_Circle.001Mat
+    second: {fileID: 2100000, guid: 87bfdf9554509774aa0cf24d9196b5eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.014_Circle.001Mat
+    second: {fileID: 2100000, guid: 839f0440f7371634b90e508b5a368375, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.015_Circle.001Mat
+    second: {fileID: 2100000, guid: 34066e6372b43664795b7ad7bde0db41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.016_Circle.001Mat
+    second: {fileID: 2100000, guid: daa8caf6df68eee45901905601eb7d01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.017_Circle.001Mat
+    second: {fileID: 2100000, guid: ab86518bd323e074883dfece3be63998, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.018_Circle.001Mat
+    second: {fileID: 2100000, guid: 9ca3629736c68904ebc7885f3e7eee13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.019_Circle.001Mat
+    second: {fileID: 2100000, guid: 21eaa95e6c19318438aa03dc85bf0d08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.020_Circle.001Mat
+    second: {fileID: 2100000, guid: dca18362c07e783448a6ecb10b7ce9dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.021_Circle.002Mat
+    second: {fileID: 2100000, guid: 894fdfba1b2fcb14a8c0b8cecd42a604, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.022_Circle.003Mat
+    second: {fileID: 2100000, guid: 138865fd524e4d6409cdb719b8616905, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Circle.023_Circle.004Mat
+    second: {fileID: 2100000, guid: ac55510e4860ac94db81db233921451c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CircleMat
+    second: {fileID: 2100000, guid: 723aa650ff1618f46b4de5f498754f0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane.001_PlaneMat
+    second: {fileID: 2100000, guid: 78c75df9b3651564fbd4ad80a1235959, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane.002_PlaneMat
+    second: {fileID: 2100000, guid: 8ab1a943c45910a45941e7b7d48409dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlaneMat
+    second: {fileID: 2100000, guid: 0a71ffc98d56a2c42845133a56579404, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -129,22 +230,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

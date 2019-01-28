@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: fa23b0ec9a2a1f34cb9f0d945c5fb24e
-timeCreated: 1491384131
-licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Boolean_1
     100002: Boolean_1_1
@@ -102,26 +100,129 @@ ModelImporter:
     4300032: plaque
     4300034: voyant_orange
     4300036: voyant_rouge
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boolean_1Mat
+    second: {fileID: 2100000, guid: 3b609f1fdc6014f4594bbaeebdb7b7bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Boolean_1_1Mat
+    second: {fileID: 2100000, guid: 0934bd5b285cf2046b29252c769b2dde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1Mat
+    second: {fileID: 2100000, guid: 9a2a18eaaca72d24c884804b684159eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_11Mat
+    second: {fileID: 2100000, guid: 34f0356dd233d1b46a1439594ed1c7b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder_1Mat
+    second: {fileID: 2100000, guid: ba024a94dfd15f247a9a1072a56221ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bouton_s_lectionMat
+    second: {fileID: 2100000, guid: b016611f755260f408c7ee0cfd66ada6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: d_but_pisMat
+    second: {fileID: 2100000, guid: cf728c84aa722e74dadd24a62865a0d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grilleMat
+    second: {fileID: 2100000, guid: f060e71520977cc4ab34c696a35bd975, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mancheMat
+    second: {fileID: 2100000, guid: 8dfe6ddbee47ec246864cc653169bccf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: on_offMat
+    second: {fileID: 2100000, guid: fb51df2b596b4f74fa8d70b8c3ef1c72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pied_1Mat
+    second: {fileID: 2100000, guid: b7234d039f608af4cb668fab6faec0fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pied_2Mat
+    second: {fileID: 2100000, guid: 5e302696b1821314cac4ca5b24817dd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pied_3Mat
+    second: {fileID: 2100000, guid: 4cba5ce2e1736024e9af84882a01631b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pied_4Mat
+    second: {fileID: 2100000, guid: 4e57af8536f503a418f7fd9d503a4650, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pis_1Mat
+    second: {fileID: 2100000, guid: a3810bcd68c823a418edc6bd4297f10a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pis_2Mat
+    second: {fileID: 2100000, guid: 8dfbce5ae01655c4b8ef83dccc879e17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plaqueMat
+    second: {fileID: 2100000, guid: 8e20fe5bdde15904c8a14c190af5262e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: voyant_orangeMat
+    second: {fileID: 2100000, guid: a4884212bc29e834db80d391b5c8b306, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: voyant_rougeMat
+    second: {fileID: 2100000, guid: 4a94dcc00fa90ed4b8f0589bbc4eff74, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -129,22 +230,30 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
