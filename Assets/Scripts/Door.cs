@@ -2,39 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door: MonoBehaviour {
 
-    public Animator anim;
-    public Animation anima;
-    public AnimationClip animClip;
-    public AudioSource audSource;
-    public bool animPlayed = false;
-    public float maxReach = 1.0f;
+    PlayerController playerController;
+    RaycastShooting raycastShooting;
+    Camera playerCam;
+
+    public LayerMask door;
+    public Animator doorMoving;
+    public bool doorOpen;
+    public bool doorWait = true;
+    public float doorTime = 2f;
 
     void Start()
     {
+        raycastShooting = GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>();
+        playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
 
+        doorOpen = true;
     }
 
-	//Update is called once per frame
-	/*void Update () {
-		if (Input.GetAxis("Interact") > 0 && !animPlayed)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, maxReach) && hitInfo.collider.GetComponent<Door>())
-            {
-                if (anim && animClip)
-                {
-                    anim.enabled = true;
-                }
-                if (anima)
-                {
-                    anima.Play();
-                    audSource.Play();
-                }                    
-                Debug.Log("Door Open");
-            }
+    private void FixedUpdate()
+    {
+        RaycastCheck();
+    }
+
+    public void RaycastCheck()
+    {
+        if (Input.GetButtonDown("Fire1") && doorWait)
+        {            
+            Raycasting();
         }
-	}*/
+    }
+
+    public void Raycasting()
+    {
+        float x = Screen.width / 2;
+        float y = Screen.height / 2;
+
+        Ray ray = playerCam.ScreenPointToRay(new Vector2(x, y));
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, raycastShooting.shootingDistance, door))
+        {
+            if (doorOpen)
+                StartCoroutine(WaitForDoorOpen(doorTime));
+
+            else if (!doorOpen)
+                StartCoroutine(WaitForDoorClose(doorTime));
+        }
+    }
+
+    IEnumerator WaitForDoorOpen(float time)
+    {
+        doorMoving.Play("OpenDoor");
+        doorWait = false;
+        yield return new WaitForSeconds(time);
+        doorOpen = false;
+        doorWait = true;
+    }
+    IEnumerator WaitForDoorClose(float time)
+    {
+        doorMoving.Play("CloseDoor");
+        doorWait = false;
+        yield return new WaitForSeconds(time);
+        doorOpen = true;
+        doorWait = true;
+    }
 }

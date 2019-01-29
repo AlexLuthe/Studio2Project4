@@ -37,7 +37,7 @@ public class EventListener : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 
         for (int index = 0; index < missionTimers.Length; ++index)
         {
@@ -95,7 +95,7 @@ public class EventListener : MonoBehaviour {
                                             Color colour = rend.material.color;
                                             rend.material.SetColor("_Color", new Color(colour.r, colour.g, colour.b, 1));
                                         }
-                                        */
+                                        
                                 }
                                 ++missionProg[missionIndex];
                                 missionTimers[missionIndex] = hitObject.objectInfo.timer;
@@ -172,5 +172,5 @@ public class EventListener : MonoBehaviour {
         {
             heldObject.transform.localPosition = Vector3.Lerp(heldObject.transform.localPosition, new Vector3(xPickupModifier, yPickupModifier, zPickupModifier), Time.deltaTime * 4);
         }
-    }
+    }*/
 }

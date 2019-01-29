@@ -6,43 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
-    int yInvert;
+    bool yInvert;
 
+    public PlayerController playerController;
     public Animator menuEyes;
     public Slider masterVolume;
     public Slider masterFOV;
+    public Toggle invertYTog;
     public Camera playerCam;
     public float tempVol;
     public float tempFOV;
+    public int tempInv;
+    public bool invertYVal;
 
     private void Awake()
     {
-        ReadIn();
         Cursor.visible = false;
+
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("MenuHandler");
+        if (objs.Length > 1)
+            Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void FixedUpdate()
     {
         changeMasterVolume();
         changeFOV();
-    }
-
-    public void ReadIn ()
-    {
-        if (SceneManager.GetActiveScene().name == "Options")
-        {
-            using (System.IO.StreamReader file = new System.IO.StreamReader(Application.dataPath + "/options.txt"))
-            {
-                yInvert = int.Parse(file.ReadLine());
-            }
-            if (yInvert == -1)
-                GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = true;
-            else if (yInvert == 1)
-                GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = false;
-
-            Debug.Log("I am running");
-            GameObject.Find("togInvertY").GetComponent<Toggle>().isOn = true;
-        }
     }
 
     public void PlayGame()
@@ -53,15 +44,6 @@ public class MenuHandler : MonoBehaviour
     public void Options()
     {
         StartCoroutine(LoadSceneAfterDelay("Options", 0.80f));
-        if (SceneManager.GetActiveScene().name == "Pause")
-        {
-            SceneManager.UnloadSceneAsync("Pause");
-        }
-        if (SceneManager.GetActiveScene().name == "Menu")
-        {
-            SceneManager.UnloadSceneAsync("Menu");
-        }
-        ReadIn();
     }
 
     public void Credits()
@@ -113,6 +95,26 @@ public class MenuHandler : MonoBehaviour
         }
     }
 
+    public void InvertY()
+    {
+        Debug.Log("Toggling");
+        invertYVal = invertYTog.isOn;
+        if (invertYVal && invertYTog != null)
+        {
+            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            playerController.yInvert = +1;
+            tempInv = playerController.yInvert;
+        }    
+        else if (!invertYVal && invertYTog != null)
+        {
+            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            playerController.yInvert = -1;
+            tempInv = playerController.yInvert;
+        }
+        else if (invertYTog = null)
+            playerController.yInvert = tempInv;
+    }
+
     public void changeMasterVolume()
     {
         if (masterVolume != null)
@@ -128,11 +130,11 @@ public class MenuHandler : MonoBehaviour
     public void changeFOV()
     {
         if (masterFOV != null)
-        {
+        {          
             masterFOV = GameObject.FindGameObjectWithTag("FOV").GetComponent<Slider>();
             playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
-            playerCam.fieldOfView = masterFOV.value;
             tempFOV = masterFOV.value;
+            playerCam.fieldOfView = masterFOV.value;
         }
         else if (masterFOV = null)
             playerCam.fieldOfView = tempFOV;

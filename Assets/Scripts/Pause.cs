@@ -1,64 +1,102 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Pause : MonoBehaviour {
 
-    bool paused = false;
+    public bool paused = false;
+    public bool pausedOnce = false;
     public GameObject pauseMenu;
-    public GameObject fpsController;
-    public GameObject cam;
-    public GameObject colourCam;
+    public PlayerController playerController;
+    public RaycastShooting raycastShooting;
     public GameObject wakeUp;
+    public Animator menuEyes;
+    public EventSystem myEventSystem;
 
-	// Use this for initialization
-	void Awake () {
-        //PlayAnimation();
+    public void Start()
+    {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        raycastShooting = GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>();
     }
 
-    /*void PlayAnimation ()
-    {
-        if (!fpsController.GetComponent<Animation>().isPlaying)
+    public void Update()
+    {        
+
+        if (Input.GetButtonDown("Start") && playerController.GetComponent<RaycastShooting>().wokenUp)
         {
-            fpsController.GetComponent<Animation>().Play();
-            Animation[] eyelids = wakeUp.GetComponentsInChildren<Animation>();
-            for (int index = 0; index < eyelids.Length; ++index)
-                eyelids[index].Play();
-        }
-    }*/
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Escape)) 
-            {
+            paused = !paused;
             if (paused)
             {
-                Unpause();
-            }
-            else {
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
+                StartCoroutine("highlightBtn");
+                playerController.enabled = false;
+                raycastShooting.enabled = false;
                 pauseMenu.SetActive(true);
-                fpsController.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                fpsController.SetActive(false);
-                cam.transform.parent = null;
-                paused = true;
+                pausedOnce = true;
             }
-        }
-	}
 
-    public void Unpause()
-    {
-        Time.timeScale = 1;
-        pauseMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        fpsController.SetActive(true);
-        fpsController.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().m_MouseLook.LoadOptions();
-        cam.transform.parent = fpsController.transform;
-        cam.transform.position = colourCam.transform.position;
-        paused = false;
-        //PlayAnimation();
+        }
     }
+
+    public void ResetHighlightButton()
+    {
+        StartCoroutine("highlightBtn");
+    }
+
+    IEnumerator highlightBtn()
+    {
+        myEventSystem.SetSelectedGameObject(null);
+        yield return null;
+        myEventSystem.SetSelectedGameObject(myEventSystem.firstSelectedGameObject);
+    }
+
+    public void FixedUpdate()
+    {
+        Unpaused();
+    }
+
+    public void Unpaused()
+    {
+        if (!paused && pausedOnce)
+        {
+            //Time.timeScale = 1;
+            playerController.enabled = true;
+            raycastShooting.enabled = true;
+            pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void ReturntoGame()
+    {
+            //Time.timeScale = 1;
+            playerController.enabled = true;
+            raycastShooting.enabled = true;
+            pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        paused = false;
+    }
+
+    public void loadMainMenu()
+    {
+        StartCoroutine(LoadSceneAfterDelay("Menu", 0.80f));
+    }
+    public IEnumerator LoadSceneAfterDelay(string sceneName, float seconds)
+    {
+        menuEyes.Play("MenuClose");
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void QuitToDesktop()
+    {
+        Application.Quit();
+    }
+
 }

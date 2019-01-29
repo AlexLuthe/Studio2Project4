@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour {
     public float mouseSensY;
     private Vector3 rotateValueX;
     private Vector3 rotateValueY;
+    public int yInvert = -1;
 
     // Use this for initialization
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         GetComponent<Animator>().Play("Open Eyes");
     }
 
@@ -41,16 +43,11 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void Jumping()
-    {
-
-    }
-
     public void CameraRotation()
     {
-        float mouseSpeedX = Input.GetAxis("Mouse Y") * mouseSensY;
-        float mouseSpeedY = Input.GetAxis("Mouse X") * mouseSensX;
-        rotateValueX = new Vector3(mouseSpeedX * -1, 0, 0);
+        float mouseSpeedX = (Input.GetAxis("Mouse Y") + Input.GetAxis("JoystickRightY")) * mouseSensY;
+        float mouseSpeedY = (Input.GetAxis("Mouse X") + Input.GetAxis("JoystickRightX")) * mouseSensX;
+        rotateValueX = new Vector3(mouseSpeedX *  yInvert, 0, 0);
         myCam.transform.eulerAngles = myCam.transform.eulerAngles + rotateValueX;
         rotateValueY = new Vector3(0, mouseSpeedY * +1, 0);
         transform.eulerAngles = transform.eulerAngles + rotateValueY;
