@@ -12,8 +12,12 @@ public class MenuHandler : MonoBehaviour
     public Animator menuEyes;
     public Slider masterVolume;
     public Slider masterFOV;
+    public Slider xsensitivity;
+    public Slider ysensitivity;
     public Toggle invertYTog;
     public Camera playerCam;
+    public float tempXSens;
+    public float tempYSens;
     public float tempVol;
     public float tempFOV;
     public int tempInv;
@@ -30,10 +34,19 @@ public class MenuHandler : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public void Start()
+    {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerController.mouseSensX = xsensitivity.value;
+        playerController.mouseSensY = ysensitivity.value;
+    }
+
     public void FixedUpdate()
     {
         changeMasterVolume();
         changeFOV();
+        changeXSensitivity();
+        changeYSensitivity();
     }
 
     public void PlayGame()
@@ -138,6 +151,30 @@ public class MenuHandler : MonoBehaviour
         }
         else if (masterFOV = null)
             playerCam.fieldOfView = tempFOV;
+    }
+
+    public void changeXSensitivity()
+    {
+        if (xsensitivity != null)
+        {
+            xsensitivity = GameObject.FindGameObjectWithTag("Xsens").GetComponent<Slider>();
+            playerController.mouseSensX = xsensitivity.value;
+            tempXSens = xsensitivity.value;
+        }
+        else if (xsensitivity = null)
+            playerController.mouseSensX = tempVol;
+    }
+
+    public void changeYSensitivity()
+    {
+        if (ysensitivity != null)
+        {
+            ysensitivity = GameObject.FindGameObjectWithTag("Ysens").GetComponent<Slider>();
+            playerController.mouseSensY = ysensitivity.value;
+            tempYSens = ysensitivity.value;
+        }
+        else if (ysensitivity = null)
+            playerController.mouseSensY = tempVol;
     }
 
     public IEnumerator LoadSceneAfterDelay(string sceneName, float seconds)

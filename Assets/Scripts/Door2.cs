@@ -58,16 +58,20 @@ public class Door2: MonoBehaviour {
     {
         doorMoving.Play("OpenDoor2");
         doorWait = false;
+        this.gameObject.tag = "Untagged";
         yield return new WaitForSeconds(time);
         doorOpen = false;
         doorWait = true;
+        this.gameObject.tag = "Activateable";
     }
     IEnumerator WaitForDoorClose(float time)
     {
         doorMoving.Play("CloseDoor2");
         doorWait = false;
+        this.gameObject.tag = "Untagged";
         yield return new WaitForSeconds(time);
         doorOpen = true;
         doorWait = true;
+        this.gameObject.tag = "Activateable";
     }
 }

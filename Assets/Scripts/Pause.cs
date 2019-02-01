@@ -31,8 +31,6 @@ public class Pause : MonoBehaviour {
             {
                 //Time.timeScale = 0;
                 StartCoroutine("highlightBtn");
-                playerController.enabled = false;
-                raycastShooting.enabled = false;
                 pauseMenu.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -64,8 +62,6 @@ public class Pause : MonoBehaviour {
         if (!paused && pausedOnce)
         {
             //Time.timeScale = 1;
-            playerController.enabled = true;
-            raycastShooting.enabled = true;
             pauseMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
