@@ -26,6 +26,18 @@ public class RaycastShooting : MonoBehaviour {
     public GameObject alarmClockObj;
     public bool wokenUp;
 
+    [Header("Toilet Mission")]
+    public bool hasPeed = false;
+    public float peeTimer;
+    public float peeReady;
+    public ToiletDoor toiletDoor;
+    public ShowerDoor showerDoor;
+    public LayerMask toiletBowl;
+    public LayerMask toiletFlush;
+    public LayerMask toiletWipe;
+    public LayerMask toiletWash;
+    public LayerMask toiletSoap;
+
     [Header("Keys Mission")]
     public LayerMask keys;
     public LayerMask endGameDoor;
@@ -36,6 +48,8 @@ public class RaycastShooting : MonoBehaviour {
     {
         playerCam = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
         playerAnim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        toiletDoor = GameObject.Find("Go To Toilet").GetComponent<ToiletDoor>();
+        showerDoor = GameObject.Find("Shower").GetComponent<ShowerDoor>();
         wokenUp = false;
 }
 
@@ -65,36 +79,80 @@ public class RaycastShooting : MonoBehaviour {
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, shootingDistance, alarmClock))
+        if (Physics.Raycast(ray, out hit, shootingDistance))
         {
-            //Debug.Log("Hit Alarm");
-            playerAnim.Play("Get Out Of Bed");
-            GameObject.FindGameObjectWithTag("AlarmSound").GetComponent<AudioSource>().enabled = false;
-            GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Animator>().enabled = false;
-            GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Text>().enabled = true;
-            GameObject.Find("Alarm Clock").tag = "Untagged";
-            StartCoroutine(WaitForWakeUp(4.5f));
-        }
+            if(hit.collider.gameObject.name == "Alarm Clock")
+            {
+                playerAnim.Play("Get Out Of Bed");
+                GameObject.FindGameObjectWithTag("AlarmSound").GetComponent<AudioSource>().enabled = false;
+                GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Animator>().enabled = false;
+                GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Text>().enabled = true;
+                GameObject.Find("Alarm Clock").tag = "Untagged";
+                StartCoroutine(WaitForWakeUp(4.5f));
+            }
 
-        if (Physics.Raycast(ray, out hit, shootingDistance, keys))
-        {
-            GameObject endGameKeys = GameObject.Find("EndGameKeys");
-            endGameKeys.GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(LerpToHand(endGameKeys));
-            keysCollected = true;
-            GameObject.Find("EndGameDoor").tag = "Activateable";
-            endGameKeys.tag = "Untagged";
-        }
+            if (hit.collider.gameObject.name == "Go To Toilet" && !hasPeed && toiletDoor.toiletLidOpen)
+            {
+                toiletDoor.toiletPee.SetActive(true);
+                GameObject.Find("Go To Toilet").GetComponent<AudioSource>().Play();
+                hasPeed = true;
+                peeTimer = 0.0f;
+                toiletDoor.gameObject.tag = "Untagged";
+            }
 
-        if(Physics.Raycast(ray, out hit, shootingDistance, endGameDoor) && keysCollected)
-        {
-            crosshair.SetActive(false);
-            endGameFade.Play("FadeToWhite");
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>().enabled = false;
-            Destroy(GameObject.Find("EndGameKeys"));
-            Debug.Log("FadingOut");
-            StartCoroutine(LoadSceneAfterDelay("Menu", 15.0f));            
+            if (hit.collider.gameObject.name == "Flush")
+            {
+                toiletDoor.toiletPee.SetActive(false);
+                toiletDoor.toiletFlush.GetComponent<AudioSource>().Play();
+            }
+
+            if (hit.collider.gameObject.name == "Wipe")
+            {
+                toiletDoor.toiletWipe.GetComponent<AudioSource>().Play();
+            }
+
+            if (hit.collider.gameObject.name == "Apply Soap")
+            {
+                toiletDoor.toiletSoap.GetComponent<AudioSource>().Play();
+            }
+
+            if (hit.collider.gameObject.name == "Wash Hands")
+            {
+                toiletDoor.toiletWash.GetComponent<AudioSource>().Play();
+                toiletDoor.ActiveWater(toiletDoor.toiletWash.GetComponent<AudioSource>().clip.length);
+            }
+
+            if (hit.collider.gameObject.name == "Shower On")
+            {
+                showerDoor.showerWaterOn = !showerDoor.showerWaterOn;
+                showerDoor.showerWater.SetActive(showerDoor.showerWaterOn ? true : false);
+            }
+
+            if (hit.collider.gameObject.name == "Wash Self")
+            {
+                
+            }
+
+            if (hit.collider.gameObject.name == "EndGameKeys")
+            {
+                GameObject endGameKeys = GameObject.Find("EndGameKeys");
+                endGameKeys.GetComponent<BoxCollider>().enabled = false;
+                StartCoroutine(LerpToHand(endGameKeys));
+                keysCollected = true;
+                GameObject.Find("EndGameDoor").tag = "Activateable";
+                endGameKeys.tag = "Untagged";
+            }
+
+            if (hit.collider.gameObject.name == "EndGameDoor" && keysCollected)
+            {
+                crosshair.SetActive(false);
+                endGameFade.Play("FadeToWhite");
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>().enabled = false;
+                Destroy(GameObject.Find("EndGameKeys"));
+                Debug.Log("FadingOut");
+                StartCoroutine(LoadSceneAfterDelay("Menu", 15.0f));
+            }
         }
     }
 

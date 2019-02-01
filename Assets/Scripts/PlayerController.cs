@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour {
     float mouseSpeedY;
     private Vector3 rotateValueX;
     private Vector3 rotateValueY;
-    public float viewRange;
+    public float viewRangeUp;
+    public float viewRangeDown;
     public int yInvert = -1;
     private float rotY = 0.0f;
     private float rotX = 0.0f;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour {
             rotY += mouseX * mouseSensX;
             rotX += (mouseY * yInvert) * mouseSensY;
 
-            rotX = Mathf.Clamp(rotX, -viewRange, viewRange);
+            rotX = Mathf.Clamp(rotX, viewRangeUp, viewRangeDown);
 
             localCamRotation = Quaternion.Euler(rotX, 0.0f, 0.0f);
             localPlayRotation = Quaternion.Euler(0.0f, rotY, 0.0f);
