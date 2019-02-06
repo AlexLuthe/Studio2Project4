@@ -51,7 +51,7 @@ public class MenuHandler : MonoBehaviour
 
     public void PlayGame()
     {
-        StartCoroutine(LoadGameAfterDelay("Master Scene", "Wake Up", "Cereal Mission", "Coffee Mission", "Toilet Mission", "Shower Mission", "Key End", 0.80f));
+        StartCoroutine(LoadGameAfterDelay("Master Scene", "Wake Up", "Kitchen Missions", "Toilet Mission", "Shower Mission", "Key End", 0.80f));
     }
 
     public void Options()
@@ -73,8 +73,7 @@ public class MenuHandler : MonoBehaviour
     {
         StartCoroutine(LoadSceneAfterDelay("Menu", 0.80f));
         SceneManager.UnloadSceneAsync("Master Scene");
-        SceneManager.UnloadSceneAsync("Cereal Mission");
-        SceneManager.UnloadSceneAsync("Coffee Mission");
+        SceneManager.UnloadSceneAsync("Kitchen Missions");
         SceneManager.UnloadSceneAsync("Toilet Mission");
         SceneManager.UnloadSceneAsync("Shower Mission");
         SceneManager.UnloadSceneAsync("Wake Up");
@@ -183,7 +182,7 @@ public class MenuHandler : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(sceneName);
     }
-    public IEnumerator LoadGameAfterDelay(string sceneName1, string sceneName2, string sceneName3, string sceneName4, string sceneName5, string sceneName6, string sceneName7, float seconds)
+    public IEnumerator LoadGameAfterDelay(string sceneName1, string sceneName2, string sceneName3, string sceneName4, string sceneName5, string sceneName6, float seconds)
     {
         menuEyes.Play("MenuClose");
         yield return new WaitForSeconds(seconds);
@@ -193,6 +192,5 @@ public class MenuHandler : MonoBehaviour
         SceneManager.LoadScene(sceneName4, LoadSceneMode.Additive);
         SceneManager.LoadScene(sceneName5, LoadSceneMode.Additive);
         SceneManager.LoadScene(sceneName6, LoadSceneMode.Additive);
-        SceneManager.LoadScene(sceneName7, LoadSceneMode.Additive);
     }
 }
