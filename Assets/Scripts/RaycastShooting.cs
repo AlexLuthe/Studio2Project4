@@ -23,13 +23,14 @@ public class RaycastShooting : MonoBehaviour {
     public GameObject fromPoint;
     public float lerpSpeed = 1.5f;
     public bool itemPickedUp;
+    bool itemMoving;
 
     [Header("Wake Up Mission")]
     public LayerMask alarmClock;
     public GameObject alarmClockObj;
     public bool wokenUp;
 
-    [Header("Toilet Mission")]
+    [Header("Bathroom Missions")]
     public bool hasPeed = false;
     public float peeTimer;
     public float peeReady;
@@ -40,6 +41,7 @@ public class RaycastShooting : MonoBehaviour {
     public LayerMask toiletWipe;
     public LayerMask toiletWash;
     public LayerMask toiletSoap;
+    public bool showeringOn;
 
     [Header("Kitchen Missions")]
     //Neutral Pickups
@@ -55,6 +57,7 @@ public class RaycastShooting : MonoBehaviour {
     //Coffee Mission
     public bool mugPickedUp;
     public bool coffeeMade;
+    public bool coffeeMachineDone;
 
     [Header("Keys Mission")]
     public Text cleanOrDirty;
@@ -101,253 +104,264 @@ public class RaycastShooting : MonoBehaviour {
 
     public void Raycasting()
     {
-        //Debug.Log("Trying to Hit");
-        float x = Screen.width / 2;
-        float y = Screen.height / 2;
-
-        Ray ray = playerCam.ScreenPointToRay(new Vector2(x, y));
-        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, shootingDistance))
+        if (!itemMoving)
         {
-            if (hit.collider.gameObject.name == "Alarm Clock")
-            {
-                playerAnim.Play("Get Out Of Bed");
-                GameObject.FindGameObjectWithTag("AlarmSound").GetComponent<AudioSource>().enabled = false;
-                GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Animator>().enabled = false;
-                GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Text>().enabled = true;
-                GameObject.Find("Alarm Clock").tag = "Untagged";
-                StartCoroutine(WaitForWakeUp(4.5f));
-            }
+            //Debug.Log("Trying to Hit");
+            float x = Screen.width / 2;
+            float y = Screen.height / 2;
 
-            if (hit.collider.gameObject.name == "Go To Toilet" && !hasPeed && toiletListener.toiletLidOpen)
-            {
-                toiletListener.toiletPee.SetActive(true);
-                GameObject.Find("Go To Toilet").GetComponent<AudioSource>().Play();
-                hasPeed = true;
-                peeTimer = 0.0f;
-                toiletListener.gameObject.tag = "Untagged";
-                relieved = true;
-            }
+            Ray ray = playerCam.ScreenPointToRay(new Vector2(x, y));
+            Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
+            RaycastHit hit;
 
-            if (hit.collider.gameObject.name == "Flush")
+            if (Physics.Raycast(ray, out hit, shootingDistance))
             {
-                toiletListener.toiletPee.SetActive(false);
-                toiletListener.flushWater.Play();
-                toiletListener.flushSound.Play();
-            }
-
-            if (hit.collider.gameObject.name == "Wipe")
-            {
-                toiletListener.toiletWipe.GetComponent<AudioSource>().Play();
-            }
-
-            if (hit.collider.gameObject.name == "Apply Soap")
-            {
-                toiletListener.soapSound.Play();
-                toiletListener.handSoap.Play();
-            }
-
-            if (hit.collider.gameObject.name == "Wash Hands")
-            {
-                toiletListener.toiletWash.GetComponent<AudioSource>().Play();
-                toiletListener.ActiveWater(toiletListener.toiletWash.GetComponent<AudioSource>().clip.length);
-            }
-
-            if (hit.collider.gameObject.name == "Shower On")
-            {
-                showerOn = !showerOn;
-                showerListener.showerWaterOn = !showerListener.showerWaterOn;
-                showerListener.showerWater.SetActive(showerListener.showerWaterOn ? true : false);                
-            }
-
-            if (hit.collider.gameObject.name == "Wash Self")
-            {
-                if(showerOn)
-                    clean = true;
-                showerListener.washSelf.GetComponent<AudioSource>().Play();
-            }
-
-            if (hit.collider.gameObject.name == "Dry Self")
-            {
-                showerListener.drySelf.GetComponent<AudioSource>().Play();
-            }
-
-            if (hit.collider.gameObject.name == "Put On Clothes")
-            {
-                showerListener.putOnClothesSound.Play();
-                showerListener.putOnClothes.SetActive(false);
-                showerListener.putOnShoes.SetActive(false);
-                clothed = true;
-            }
-
-            if (hit.collider.gameObject.name == "Bowl Pickup" && !itemPickedUp)
-            {
-                if(cerealMade && spoonPutIn)
+                if (hit.collider.gameObject.name == "Alarm Clock")
                 {
-                    GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    fromPoint = bowlPickUp;
-                    bowlPickUp.GetComponent<BoxCollider>().enabled = false;
+                    playerAnim.Play("Get Out Of Bed");
+                    GameObject.FindGameObjectWithTag("AlarmSound").GetComponent<AudioSource>().enabled = false;
+                    GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Animator>().enabled = false;
+                    GameObject.FindGameObjectWithTag("AlarmText").GetComponent<Text>().enabled = true;
+                    GameObject.Find("Alarm Clock").tag = "Untagged";
+                    StartCoroutine(WaitForWakeUp(4.5f));
+                }
+
+                if (hit.collider.gameObject.name == "Go To Toilet" && !hasPeed && toiletListener.toiletLidOpen)
+                {
+                    toiletListener.toiletPee.SetActive(true);
+                    GameObject.Find("Go To Toilet").GetComponent<AudioSource>().Play();
+                    hasPeed = true;
+                    peeTimer = 0.0f;
+                    toiletListener.gameObject.tag = "Untagged";
+                    relieved = true;
+                }
+
+                if (hit.collider.gameObject.name == "Flush")
+                {
+                    toiletListener.toiletPee.SetActive(false);
+                    toiletListener.flushWater.Play();
+                    toiletListener.flushSound.Play();
+                }
+
+                if (hit.collider.gameObject.name == "Wipe")
+                {
+                    toiletListener.toiletWipe.GetComponent<AudioSource>().Play();
+                }
+
+                if (hit.collider.gameObject.name == "Apply Soap")
+                {
+                    toiletListener.soapSound.Play();
+                    toiletListener.handSoap.Play();
+                }
+
+                if (hit.collider.gameObject.name == "Wash Hands")
+                {
+                    toiletListener.toiletWash.GetComponent<AudioSource>().Play();
+                    toiletListener.ActiveWater(toiletListener.toiletWash.GetComponent<AudioSource>().clip.length);
+                }
+
+                if (hit.collider.gameObject.name == "Shower On")
+                {
+                    if (!showeringOn)
+                    {
+                        StartCoroutine(ShowerOnShowerOff(0.5f));
+                        showeringOn = true;
+                    }
+                }
+
+                if (hit.collider.gameObject.name == "Wash Self")
+                {
+                    GameObject washSelf = GameObject.Find("Wash Self");
+                    fromPoint = washSelf;
+                    washSelf.GetComponent<BoxCollider>().enabled = false;
+                    Destroy(showerListener.soapCorner);
                     StartCoroutine(PickUpObject());
                     StartCoroutine(FillHands(0.5f));
-                    bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(false);
-                    bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(false);
-                    bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(false);
-                    satisfied = true;
+                    if (showerOn)
+                        clean = true;
+                    showerListener.washSelf.GetComponent<AudioSource>().Play();
                 }
-                else if(!cerealMade)
+
+                if (hit.collider.gameObject.name == "Dry Self")
+                {
+                    showerListener.drySelf.GetComponent<AudioSource>().Play();
+                }
+
+                if (hit.collider.gameObject.name == "Put On Clothes")
+                {
+                    showerListener.putOnClothesSound.Play();
+                    showerListener.putOnClothes.SetActive(false);
+                    showerListener.putOnShoes.SetActive(false);
+                    clothed = true;
+                }
+
+                if (hit.collider.gameObject.name == "Bowl Pickup" && !itemPickedUp)
+                {
+                    if (cerealMade && spoonPutIn)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        fromPoint = bowlPickUp;
+                        bowlPickUp.GetComponent<BoxCollider>().enabled = false;
+                        StartCoroutine(PickUpObject());
+                        StartCoroutine(FillHands(0.5f));
+                        bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(false);
+                        bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(false);
+                        bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(false);
+                        satisfied = true;
+                    }
+                    else if (!cerealMade)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        fromPoint = bowlPickUp;
+                        bowlPickUp.GetComponent<BoxCollider>().enabled = false;
+                        StartCoroutine(PickUpObject());
+                        StartCoroutine(FillHands(0.5f));
+                        bowlPickedUp = true;
+                    }
+                }
+
+                if (spoonPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
                 {
                     GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    fromPoint = bowlPickUp;
-                    bowlPickUp.GetComponent<BoxCollider>().enabled = false;
+                    GameObject spoonPickUp = GameObject.Find("BigSpoon");
+                    bowlPickUp.GetComponent<BowlListener>().spoon.SetActive(true);
+                    spoonPutIn = true;
+                    spoonPickedUp = false;
+                    itemPickedUp = false;
+                    Destroy(spoonPickUp.gameObject);
+                }
+
+                if (hit.collider.gameObject.name == "Milk Pickup" && !itemPickedUp)
+                {
+                    Debug.Log("Milk Picked Up");
+                    GameObject milkPickUp = GameObject.Find("Milk Pickup");
+                    fromPoint = milkPickUp;
+                    milkPickUp.GetComponent<BoxCollider>().enabled = false;
                     StartCoroutine(PickUpObject());
                     StartCoroutine(FillHands(0.5f));
-                    bowlPickedUp = true;
+                    milkPickedUp = true;
                 }
-            }
 
-            if (spoonPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
-            {
-                GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                GameObject spoonPickUp = GameObject.Find("BigSpoon");
-                bowlPickUp.GetComponent<BowlListener>().spoon.SetActive(true);
-                spoonPutIn = true;
-                spoonPickedUp = false;
-                itemPickedUp = false;
-                Destroy(spoonPickUp.gameObject);
-            }            
-
-            if (hit.collider.gameObject.name == "Milk Pickup" && !itemPickedUp)
-            {                
-                Debug.Log("Milk Picked Up");
-                GameObject milkPickUp = GameObject.Find("Milk Pickup");
-                fromPoint = milkPickUp;
-                milkPickUp.GetComponent<BoxCollider>().enabled = false;
-                StartCoroutine(PickUpObject());
-                StartCoroutine(FillHands(0.5f));
-                milkPickedUp = true;
-            }
-
-            if (hit.collider.gameObject.name == "Cereal Box" && !itemPickedUp)
-            {
-                GameObject cerealPickUp = GameObject.Find("Cereal Box");
-                fromPoint = cerealPickUp;
-                cerealPickUp.GetComponent<BoxCollider>().enabled = false;
-                StartCoroutine(PickUpObject());
-                StartCoroutine(FillHands(0.5f));
-                cerealPickedUp = true;
-            }
-
-            if (hit.collider.gameObject.name == "BigSpoon" && !itemPickedUp)
-            {
-                GameObject spoonPickUp = GameObject.Find("BigSpoon");
-                fromPoint = spoonPickUp;
-                spoonPickUp.GetComponent<BoxCollider>().enabled = false;
-                StartCoroutine(PickUpObject());
-                StartCoroutine(FillHands(0.5f));
-                spoonPickedUp = true;
-            }
-
-            if (milkPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
-            {
-                if (cerealPoured)
+                if (hit.collider.gameObject.name == "Cereal Box" && !itemPickedUp)
                 {
-                    GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(true);
-                    bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(false);
-                    bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(true);
-                    cerealMade = true;
+                    GameObject cerealPickUp = GameObject.Find("Cereal Box");
+                    fromPoint = cerealPickUp;
+                    cerealPickUp.GetComponent<BoxCollider>().enabled = false;
+                    StartCoroutine(PickUpObject());
+                    StartCoroutine(FillHands(0.5f));
+                    cerealPickedUp = true;
                 }
 
-                else if (!cerealPoured)
+                if (hit.collider.gameObject.name == "BigSpoon" && !itemPickedUp)
                 {
-                    GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(true);
-                    milkPoured = true;
+                    GameObject spoonPickUp = GameObject.Find("BigSpoon");
+                    fromPoint = spoonPickUp;
+                    spoonPickUp.GetComponent<BoxCollider>().enabled = false;
+                    StartCoroutine(PickUpObject());
+                    StartCoroutine(FillHands(0.5f));
+                    spoonPickedUp = true;
                 }
-            }
 
-            if (cerealPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
-            {
-                if (!milkPoured)
+                if (milkPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
                 {
-                    GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(true);
-                    cerealPoured = true;
+                    if (cerealPoured)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(true);
+                        bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(false);
+                        bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(true);
+                        cerealMade = true;
+                    }
+
+                    else if (!cerealPoured)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        bowlPickUp.GetComponent<BowlListener>().milkLiquid.SetActive(true);
+                        milkPoured = true;
+                    }
                 }
 
-                else if (milkPoured)
+                if (cerealPickedUp && hit.collider.gameObject.name == "Bowl Pickup")
                 {
-                    GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
-                    bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(true);
-                    cerealMade = true;
-                }
-            }
+                    if (!milkPoured)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        bowlPickUp.GetComponent<BowlListener>().cerealFlakes.SetActive(true);
+                        cerealPoured = true;
+                    }
 
-            if (hit.collider.gameObject.name == "Mug Pickup" && !itemPickedUp)
-            {
-                if (coffeeMade)
+                    else if (milkPoured)
+                    {
+                        GameObject bowlPickUp = GameObject.Find("Bowl Pickup");
+                        bowlPickUp.GetComponent<BowlListener>().cerealMilkFlakes.SetActive(true);
+                        cerealMade = true;
+                    }
+                }
+
+                if (hit.collider.gameObject.name == "Mug Pickup" && !itemPickedUp)
+                {
+                    if (coffeeMade)
+                    {
+                        GameObject mugPickUp = GameObject.Find("Mug Pickup");
+                        fromPoint = mugPickUp;
+                        mugPickUp.GetComponent<BoxCollider>().enabled = false;
+                        StartCoroutine(PickUpObject());
+                        StartCoroutine(FillHands(0.5f));
+                        mugPickUp.GetComponent<MugListener>().coffeeWithMilk.SetActive(false);
+                        mugPickedUp = true;
+                        invigorated = true;
+                    }
+                    else if (!coffeeMade)
+                    {
+                        GameObject mugPickUp = GameObject.Find("Mug Pickup");
+                        fromPoint = mugPickUp;
+                        mugPickUp.GetComponent<BoxCollider>().enabled = false;
+                        StartCoroutine(PickUpObject());
+                        StartCoroutine(FillHands(0.5f));
+                        mugPickedUp = true;
+                        GameObject.Find("Coffee Machine").tag = "Activateable";
+                    }
+                }
+
+                if (mugPickedUp && hit.collider.gameObject.name == "Coffee Machine")
                 {
                     GameObject mugPickUp = GameObject.Find("Mug Pickup");
-                    fromPoint = mugPickUp;
-                    mugPickUp.GetComponent<BoxCollider>().enabled = false;
-                    StartCoroutine(PickUpObject());
-                    StartCoroutine(FillHands(0.5f));
-                    mugPickUp.GetComponent<MugListener>().coffeeWithMilk.SetActive(false);                    
-                    mugPickedUp = true;
-                    invigorated = true;
+                    StartCoroutine(CupToCoffeeMachine());
+                    StartCoroutine(CoffeeMachineActivate(5.0f));
                 }
-                else if (!coffeeMade)
+
+                if (milkPickedUp && hit.collider.gameObject.name == "Mug Pickup" && coffeeMachineDone)
                 {
                     GameObject mugPickUp = GameObject.Find("Mug Pickup");
-                    fromPoint = mugPickUp;
-                    mugPickUp.GetComponent<BoxCollider>().enabled = false;
+                    mugPickUp.GetComponent<MugListener>().coffeeNoMilk.SetActive(false);
+                    mugPickUp.GetComponent<MugListener>().coffeeWithMilk.SetActive(true);
+                    coffeeMade = true;
+                }
+
+
+                if (hit.collider.gameObject.name == "EndGameKeys" && !itemPickedUp)
+                {
+                    GameObject endGameKeys = GameObject.Find("EndGameKeys");
+                    fromPoint = endGameKeys;
+                    endGameKeys.GetComponent<BoxCollider>().enabled = false;
                     StartCoroutine(PickUpObject());
                     StartCoroutine(FillHands(0.5f));
-                    mugPickedUp = true;
-                    GameObject.Find("Coffee Machine").tag = "Activateable";
+                    keysCollected = true;
+                    GameObject.Find("EndGameDoor").tag = "Activateable";
+                }
+
+                if (hit.collider.gameObject.name == "EndGameDoor" && keysCollected)
+                {
+                    crosshair.SetActive(false);
+                    endGameFade.Play("FadeToWhite");
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>().enabled = false;
+                    Destroy(GameObject.Find("EndGameKeys"));
+                    Debug.Log("FadingOut");
+                    StartCoroutine(LoadSceneAfterDelay("Menu", 35.0f));
                 }
             }
-
-            if (mugPickedUp && hit.collider.gameObject.name == "Coffee Machine")
-            {
-                GameObject mugPickUp = GameObject.Find("Mug Pickup");
-                StartCoroutine(CupToCoffeeMachine());
-                StartCoroutine(CoffeeMachineActivate(5.0f));
-            }
-
-            if (milkPickedUp && hit.collider.gameObject.name == "Mug Pickup")
-            {
-                GameObject mugPickUp = GameObject.Find("Mug Pickup");
-                mugPickUp.GetComponent<MugListener>().coffeeNoMilk.SetActive(false);
-                mugPickUp.GetComponent<MugListener>().coffeeWithMilk.SetActive(true);
-                coffeeMade = true;
-            }
-
-
-            if (hit.collider.gameObject.name == "EndGameKeys" && !itemPickedUp)
-            {
-                GameObject endGameKeys = GameObject.Find("EndGameKeys");
-                fromPoint = endGameKeys;
-                endGameKeys.GetComponent<BoxCollider>().enabled = false;
-                StartCoroutine(PickUpObject());
-                StartCoroutine(FillHands(0.5f));
-                keysCollected = true;
-                GameObject.Find("EndGameDoor").tag = "Activateable";
-            }
-
-            if (hit.collider.gameObject.name == "EndGameDoor" && keysCollected)
-            {
-                crosshair.SetActive(false);
-                endGameFade.Play("FadeToWhite");
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<RaycastShooting>().enabled = false;
-                Destroy(GameObject.Find("EndGameKeys"));
-                Debug.Log("FadingOut");
-                StartCoroutine(LoadSceneAfterDelay("Menu", 35.0f));
-            }
-        }
+        }        
     }
 
     public void RaycastingAlways()
@@ -369,7 +383,7 @@ public class RaycastShooting : MonoBehaviour {
             StartCoroutine(WaitForCrosshairDeact(0.2f));
         }
 
-        if (Physics.Raycast(ray, out hit, shootingDistance) && hit.transform.gameObject.tag != "Activateable" && itemPickedUp && Input.GetButtonDown("Fire1"))
+        if (Physics.Raycast(ray, out hit, shootingDistance) && hit.transform.gameObject.tag != "Activateable" && itemPickedUp && Input.GetButtonDown("Fire1") && !itemMoving)
         {
             Debug.Log("Dropping");
             StartCoroutine(PutDownObject());
@@ -381,6 +395,7 @@ public class RaycastShooting : MonoBehaviour {
     {
         while (fromPoint.transform.localPosition != holdingArm.transform.localPosition)
         {
+            itemMoving = true;
             fromPoint.gameObject.tag = "Untagged";
             fromPoint.transform.parent = holdingArm.transform;
             fromPoint.transform.localPosition = Vector3.Lerp(fromPoint.transform.localPosition, holdingArm.transform.localPosition, lerpSpeed * Time.deltaTime);
@@ -389,6 +404,7 @@ public class RaycastShooting : MonoBehaviour {
             fromPoint.GetComponent<Rigidbody>().isKinematic = true;
             yield return null;          
         }
+        itemMoving = false;
     }
     public IEnumerator PutDownObject()
     {
@@ -440,7 +456,7 @@ public class RaycastShooting : MonoBehaviour {
     }
 
     IEnumerator CoffeeMachineActivate(float time)
-    {
+    {        
         GameObject mugPickUp = GameObject.Find("Mug Pickup");
         GameObject coffeeMachine = GameObject.Find("Coffee Machine");
         coffeeMachine.tag = "Untagged";
@@ -449,12 +465,14 @@ public class RaycastShooting : MonoBehaviour {
         mugPickUp.GetComponent<MugListener>().coffeeLiquid2.SetActive(true);
         mugPickUp.GetComponent<MugListener>().coffeeGrindingSound.Play();
         yield return new WaitForSeconds(time);
-        fromPoint.GetComponent<BoxCollider>().enabled = true;
-        fromPoint.gameObject.tag = "Activateable";
+        Debug.Log("here");
+        mugPickUp.GetComponent<BoxCollider>().enabled = true;
+        mugPickUp.gameObject.tag = "Activateable";
         mugPickUp.GetComponent<MugListener>().coffeeGrindingSound.Stop();
         mugPickUp.GetComponent<MugListener>().coffeeLiquid1.SetActive(false);
         mugPickUp.GetComponent<MugListener>().coffeeLiquid2.SetActive(false);
-        mugPickUp.GetComponent<MugListener>().coffeeNoMilk.SetActive(true);        
+        mugPickUp.GetComponent<MugListener>().coffeeNoMilk.SetActive(true);
+        coffeeMachineDone = true;
     }
 
     IEnumerator CupToCoffeeMachine()
@@ -465,7 +483,8 @@ public class RaycastShooting : MonoBehaviour {
         itemPickedUp = false;
         mugPickedUp = false;
         while (fromPoint.transform.localPosition != coffeeMachine.transform.localPosition)
-        { 
+        {
+            itemMoving = true;
             fromPoint.transform.parent = coffeeMachine.transform;
             fromPoint.transform.localPosition = Vector3.Lerp(fromPoint.transform.localPosition, coffeeMachine.transform.localPosition, lerpSpeed * Time.deltaTime);
             fromPoint.transform.localRotation = Quaternion.Lerp(fromPoint.transform.localRotation, coffeeMachine.transform.localRotation, lerpSpeed * Time.deltaTime);
@@ -473,6 +492,16 @@ public class RaycastShooting : MonoBehaviour {
             fromPoint.GetComponent<Rigidbody>().isKinematic = true;
             yield return null;
         }
+        itemMoving = false;
+    }
+
+    IEnumerator ShowerOnShowerOff(float time)
+    {
+        showerOn = !showerOn;
+        showerListener.showerWaterOn = !showerListener.showerWaterOn;
+        showerListener.showerWater.SetActive(showerListener.showerWaterOn ? true : false);
+        yield return new WaitForSeconds(time);
+        showeringOn = false;
     }
 
     public void EyesBlinking()

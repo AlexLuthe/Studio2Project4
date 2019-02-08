@@ -15,6 +15,7 @@ public class ShowerListener: MonoBehaviour {
     public AudioSource putOnClothesSound;
     public GameObject putOnClothes;
     public GameObject putOnShoes;
+    public GameObject soapCorner;
     public bool showerWaterOn;
 
     public LayerMask door;

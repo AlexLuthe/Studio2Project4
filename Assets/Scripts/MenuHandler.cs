@@ -25,8 +25,6 @@ public class MenuHandler : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-
         GameObject[] objs = GameObject.FindGameObjectsWithTag("MenuHandler");
         if (objs.Length > 1)
             Destroy(this.gameObject);
@@ -36,6 +34,30 @@ public class MenuHandler : MonoBehaviour
 
     public void Start()
     {
+        string[] temp = Input.GetJoystickNames();
+
+        //Check whether array contains anything
+        if (temp.Length > 0)
+        {
+            //Iterate over every element
+            for (int i = 0; i < temp.Length; ++i)
+            {
+                //Check if the string is empty or not
+                if (!string.IsNullOrEmpty(temp[i]))
+                {
+                    //Not empty, controller temp[i] is connected
+                    Debug.Log("Controller " + i + " is connected using: " + temp[i]);
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    //If it is empty, controller i is disconnected
+                    //where i indicates the controller number
+                    Debug.Log("Controller: " + i + " is disconnected.");
+                    Cursor.visible = true;
+                }
+            }
+        }
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerController.mouseSensX = xsensitivity.value;
         playerController.mouseSensY = ysensitivity.value;
